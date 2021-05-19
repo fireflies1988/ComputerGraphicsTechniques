@@ -9,9 +9,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 import shapes2d.DoanThang;
+import shapes2d.HinhChuNhat;
 
 /**
  *
@@ -336,6 +338,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel19.setText("Chức năng");
 
         jButtonDraw.setText("Vẽ");
+        jButtonDraw.setToolTipText("");
         jButtonDraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDrawActionPerformed(evt);
@@ -541,6 +544,7 @@ public class MainFrame extends javax.swing.JFrame {
             if (jCheckBoxCoordSystem.isSelected()) {
                 drawCoordinateSystem(g2d);
             }
+            jButtonDraw.doClick();
         }
         jPanel2D.repaint();
     }//GEN-LAST:event_jCheckBoxGridModeActionPerformed
@@ -555,6 +559,7 @@ public class MainFrame extends javax.swing.JFrame {
             if (jCheckBoxGridMode.isSelected()) {
                 drawPixelGrid(g2d);
             }
+            jButtonDraw.doClick();
         }
         jPanel2D.repaint();
     }//GEN-LAST:event_jCheckBoxCoordSystemActionPerformed
@@ -562,13 +567,25 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonDrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDrawActionPerformed
         // TODO add your handling code here:
         String selectedItem = (String) jComboBoxShape.getSelectedItem();
+        g2d.setColor(Color.BLACK);
         if (selectedItem.equals("Đoạn thẳng")) {
             if (!lackOfInformation()) {
                 int x1 = midX + Integer.parseInt(jTextFieldX1.getText()) * UNIT;
                 int y1 = midY - Integer.parseInt(jTextFieldY1.getText()) * UNIT;
                 int x2 = midX + Integer.parseInt(jTextFieldX2.getText()) * UNIT;
                 int y2 = midY - Integer.parseInt(jTextFieldY2.getText()) * UNIT;
-                new DoanThang(x1, y1, x2, y2).draw(g2d);
+                new DoanThang().draw(x1, y1, x2, y2, g2d);
+                jPanel2D.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
+            }
+        } else if (selectedItem.equals("Hình chữ nhật")) {
+            if (!lackOfInformation()) {
+                int x1 = midX + Integer.parseInt(jTextFieldX1.getText()) * UNIT;
+                int y1 = midY - Integer.parseInt(jTextFieldY1.getText()) * UNIT;
+                int x2 = midX + Integer.parseInt(jTextFieldX2.getText()) * UNIT;
+                int y2 = midY - Integer.parseInt(jTextFieldY2.getText()) * UNIT;
+                new HinhChuNhat().draw(new Point(x1, y1), new Point(x2, y2), g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");

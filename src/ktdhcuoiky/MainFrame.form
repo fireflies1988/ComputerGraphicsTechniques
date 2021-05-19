@@ -593,6 +593,7 @@
                 <Component class="javax.swing.JButton" name="jButtonDraw">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="V&#x1ebd;"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDrawActionPerformed"/>

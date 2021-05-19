@@ -16,6 +16,9 @@ public class DoanThang {
     private int x1, y1, x2, y2;
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
+    public DoanThang() {
+    }
+
     public DoanThang(int x1, int y1, int x2, int y2) {
         this.x1 = x1;
         this.y1 = y1;
@@ -23,7 +26,7 @@ public class DoanThang {
         this.y2 = y2;
     }
     
-    public void draw(Graphics2D g2d) {
+    public void draw(int x1, int y1, int x2, int y2, Graphics2D g2d) {
         // Bresenham
         int Dx, Dy, p, x, y;
         Dx = Math.abs(x2 - x1);
