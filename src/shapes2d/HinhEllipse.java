@@ -1,0 +1,98 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package shapes2d;
+
+import java.awt.Graphics2D;
+import ktdhcuoiky.MainFrame;
+
+/**
+ *
+ * @author COMPUTER
+ */
+public class HinhEllipse {
+    private int x, y, a, b;
+    private int offset = MainFrame.PIXEL_SIZE / 2;
+    
+    public void put4Pixels(int x, int y, int xE, int yE, Graphics2D g2d) {
+        // goc phan tu I
+        g2d.fillRect(x + xE - offset, y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+        // goc phan tu II
+        g2d.fillRect(-x + xE - offset, y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+        // goc phan tu IV
+        g2d.fillRect(x + xE - offset, -y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+        // goc phan tu III
+        g2d.fillRect(-x + xE - offset, -y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+    }
+    
+    public void draw(int xE, int yE, int a, int b, Graphics2D g2d) {
+        // Midpoint ve ellipse
+        int x, y, fx, fy, a2, b2, p;
+        x = 0;
+        y = b;
+        a2 = a * a;
+        b2 = b * b;
+
+        // dao ham rieng cua f(x, y) = b2 * x * x + a2 * y * y - a2 * b2
+        fx = 0; // fx = 2 * b2 * x, x = 0 => fx = 0
+        fy = 2 * a2 * y; // fy = 2 * a2 * y
+        
+        put4Pixels(x, y, xE, yE, g2d);
+        
+        // do doc tiep tuyen ellipse tai (x, y) bat ky: m = dy/dx = -fy/fx (diem nay phan chia 2 phan ellipse de ve)
+        // ve phan I: m < -1 => fx < fy
+        p = Math.round(b2 - a2 * b + a2 / 4.0f);
+        while (fx < fy) {
+//            fx += 2 * b2; // fx' = 2 * b2 * (x + 1) = fx + 2 * b2
+            x++;
+            fx += 2 * b2; // fx' = 2 * b2 * (x + unit) = fx + 2 * unit * b2
+            if (p < 0) {
+                // midpoint nam trong duong ellipse y = y
+                p += b2 * (2 * x + 3);
+            } else {
+                // midpoint nam ngoai duong ellipse y = y - 1;
+                y--;
+                p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);
+                fy -= 2 * a2; // fy' = 2 * a2 * (y + unit) = fy + 2 * unit * a2
+            }
+            if (x % MainFrame.PIXEL_SIZE == 0) {
+                int tempY;
+                int temp = y % MainFrame.PIXEL_SIZE;
+                if (temp <= MainFrame.PIXEL_SIZE / 2) {
+                    tempY = y - temp;
+                } else {
+                    tempY = y + (MainFrame.PIXEL_SIZE - temp);
+                }
+                put4Pixels(x, tempY, xE, yE, g2d);
+            }
+        }
+        
+        // ve phan II
+        p = Math.round(b2 * (x + 0.5f) * (x + 0.5f) + a2 * (y - 1) * (y - 1) - a2 * b2);
+        while (y > 0) {
+            y --;
+            fy -= 2 * a2;  // What the hell is this used for?
+            if (p >= 0) {
+                // midpoint nam ngoai ellipse x = x
+                p += a2 * (3 - 2 * y);
+            } else {
+                // midpoint nam trong ellipse x++
+                x++;
+                fx += 2 * b2;   // here too. It's redundant.
+                p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);
+            }   
+            if (y % MainFrame.PIXEL_SIZE == 0) {
+                int tempX;
+                int temp = x % MainFrame.PIXEL_SIZE;
+                if (temp <= MainFrame.PIXEL_SIZE / 2) {
+                    tempX = x - temp;
+                } else {
+                    tempX = x + (MainFrame.PIXEL_SIZE - temp);
+                }
+                put4Pixels(tempX, y, xE, yE, g2d);
+            }
+        }
+    }
+}
