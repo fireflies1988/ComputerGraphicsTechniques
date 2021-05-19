@@ -35,7 +35,12 @@ public class HinhTron {
         g2d.fillRect(-y + xC - offset, -x + yC - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
     }
     
-    public void draw(int xC, int yC, int r, Graphics2D g2d) {
+    public void draw(int virtualXC, int virtualYC, int virtualR, Graphics2D g2d) {
+        // Convert virtualX, virtualY to realX, realY
+        int xC = MainFrame.getRealX(virtualXC);
+        int yC = MainFrame.getRealY(virtualYC);
+        int r = MainFrame.getRealWH(virtualR);
+                
         // Midpoint
         int x = 0, y = r;
         int f = 1 - r; // f = 5/4 - r vi 5/4 = 1

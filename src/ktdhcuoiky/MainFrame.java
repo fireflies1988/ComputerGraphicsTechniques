@@ -531,17 +531,11 @@ public class MainFrame extends javax.swing.JFrame {
     public static int getVirtualY(int realY) {
         return Math.round((midY - realY) / (float) UNIT);
     }
-    public static int getRealWidth(int virtualWidth) {
-        return virtualWidth * UNIT;
+    public static int getRealWH(int virtualWH) {
+        return virtualWH * UNIT;
     }
-    public static int getRealHeight(int virtualHeight) {
-        return virtualHeight * UNIT;
-    }
-    public static int getVirtualWidth(int realWidth) {
-        return Math.round(realWidth / (float) UNIT);
-    }
-    public static int getVirtualHeight(int realHeight) {
-        return Math.round(realHeight / (float) UNIT);
+    public static int getVirtualWH(int realWH) {
+        return Math.round(realWH / (float) UNIT);
     }
     public static int roundXY(int realXY) {
         int res = realXY;
@@ -629,43 +623,43 @@ public class MainFrame extends javax.swing.JFrame {
         g2d.setColor(Color.BLACK);
         if (selectedItem.equals("Đoạn thẳng")) {
             if (!lackInformation()) {
-                int x1 = midX + Integer.parseInt(jTextFieldX1.getText()) * UNIT;
-                int y1 = midY - Integer.parseInt(jTextFieldY1.getText()) * UNIT;
-                int x2 = midX + Integer.parseInt(jTextFieldX2.getText()) * UNIT;
-                int y2 = midY - Integer.parseInt(jTextFieldY2.getText()) * UNIT;
-                new DoanThang().draw(x1, y1, x2, y2, g2d);
+                int virtualX1 = Integer.parseInt(jTextFieldX1.getText());
+                int virtualY1 = Integer.parseInt(jTextFieldY1.getText());
+                int virtualX2 = Integer.parseInt(jTextFieldX2.getText());
+                int virtualY2 = Integer.parseInt(jTextFieldY2.getText());
+                new DoanThang().draw(virtualX1, virtualY1, virtualX2, virtualY2, g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
             }
         } else if (selectedItem.equals("Hình chữ nhật")) {
             if (!lackInformation()) {
-                int x1 = midX + Integer.parseInt(jTextFieldX1.getText()) * UNIT;
-                int y1 = midY - Integer.parseInt(jTextFieldY1.getText()) * UNIT;
-                int x2 = midX + Integer.parseInt(jTextFieldX2.getText()) * UNIT;
-                int y2 = midY - Integer.parseInt(jTextFieldY2.getText()) * UNIT;
-                new HinhChuNhat().draw(new Point(x1, y1), new Point(x2, y2), g2d);
+                int virtualX1 = Integer.parseInt(jTextFieldX1.getText());
+                int virtualY1 = Integer.parseInt(jTextFieldY1.getText());
+                int virtualX2 = Integer.parseInt(jTextFieldX2.getText());
+                int virtualY2 = Integer.parseInt(jTextFieldY2.getText());
+                new HinhChuNhat().draw(new Point(virtualX1, virtualY1), new Point(virtualX2, virtualY2), g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
             }
         } else if (selectedItem.equals("Hình tròn")) {
             if (!lackInformationAboutCircle()) {
-                int xC = midX + Integer.parseInt(jTextFieldXC.getText()) * UNIT;
-                int yC = midY - Integer.parseInt(jTextFieldYC.getText()) * UNIT;
-                int r = Integer.parseInt(jTextFieldR.getText()) * UNIT;
-                new HinhTron().draw(xC, yC, r, g2d);
+                int virtualXC = Integer.parseInt(jTextFieldXC.getText());
+                int virtualYC = Integer.parseInt(jTextFieldYC.getText());
+                int virtualR = Integer.parseInt(jTextFieldR.getText());
+                new HinhTron().draw(virtualXC, virtualYC, virtualR, g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
             }
         } else if (selectedItem.equals("Hình Ellipse")) {
             if (!lackInformationAboutEllipse()) {
-                int xE = midX + Integer.parseInt(jTextFieldXE.getText()) * UNIT;
-                int yE = midY - Integer.parseInt(jTextFieldYE.getText()) * UNIT;
-                int a = Integer.parseInt(jTextFieldA.getText()) * UNIT;
-                int b = Integer.parseInt(jTextFieldB.getText()) * UNIT;
-                new HinhEllipse().draw(xE, yE, a, b, g2d);
+                int virtualXE = Integer.parseInt(jTextFieldXE.getText());
+                int virtualYE = Integer.parseInt(jTextFieldYE.getText());
+                int virtualA = Integer.parseInt(jTextFieldA.getText());
+                int virtualB = Integer.parseInt(jTextFieldB.getText());
+                new HinhEllipse().draw(virtualXE, virtualYE, virtualA, virtualB, g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
@@ -707,7 +701,7 @@ public class MainFrame extends javax.swing.JFrame {
         int width = 10 * UNIT;
         int height = 10 * UNIT;
         hcn.draw(x, y, width, height, g2d);
-        ArrayList<Point> s = hcn.scale(getVirtualX(x), getVirtualY(y), getVirtualWidth(width), getVirtualHeight(height), 0.8f, 0.8f);
+        ArrayList<Point> s = hcn.scale(getVirtualX(x), getVirtualY(y), getVirtualWH(width), getVirtualWH(height), 0.8f, 0.8f);
         hcn.draw(s.get(0), s.get(1), g2d);
         jPanel2D.repaint();
     }//GEN-LAST:event_jButtonAnimation1ActionPerformed

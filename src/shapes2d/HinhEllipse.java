@@ -27,7 +27,13 @@ public class HinhEllipse {
         g2d.fillRect(-x + xE - offset, -y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
     }
     
-    public void draw(int xE, int yE, int a, int b, Graphics2D g2d) {
+    public void draw(int virtualXE, int virtualYE, int virtualA, int virtualB, Graphics2D g2d) {
+        // Convert virtualX, virtualY to realX, realY
+        int xE = MainFrame.getRealX(virtualXE);
+        int yE = MainFrame.getRealY(virtualYE);
+        int a = MainFrame.getRealWH(virtualA);
+        int b = MainFrame.getRealWH(virtualB);
+        
         // Midpoint ve ellipse
         int x, y, fx, fy, a2, b2, p;
         x = 0;

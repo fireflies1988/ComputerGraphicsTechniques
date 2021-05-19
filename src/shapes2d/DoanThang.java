@@ -19,7 +19,13 @@ public class DoanThang {
     public DoanThang() {
     }
     
-    public void draw(int x1, int y1, int x2, int y2, Graphics2D g2d) {
+    public void draw(int virtualX1, int virtualY1, int virtualX2, int virtualY2, Graphics2D g2d) {
+        // convert virtualX, virtualY to realX, realY
+        int x1 = MainFrame.getRealX(virtualX1);
+        int y1 = MainFrame.getRealY(virtualY1);
+        int x2 = MainFrame.getRealX(virtualX2);
+        int y2 = MainFrame.getRealY(virtualY2);
+        
         // Bresenham
         int Dx, Dy, p, x, y;
         Dx = Math.abs(x2 - x1);
