@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import shapes2d.DoanThang;
 import shapes2d.HinhChuNhat;
@@ -23,7 +24,7 @@ import shapes2d.HinhTron;
  * @author COMPUTER
  */
 public class MainFrame extends javax.swing.JFrame {
-    public final static int UNIT = 30;
+    public final static int UNIT = 5;
     public final static int PIXEL_SIZE = 5;
     public static int maxX, maxY;
     public static int midX, midY;
@@ -517,28 +518,34 @@ public class MainFrame extends javax.swing.JFrame {
         return xE.equals("") || yE.equals("") || a.equals("") || b.equals("");
     }
     // Get real x from virtual coordinate system
-    public int getRealX(int x) {
-        return midX + x * UNIT;
+    public static int getRealX(int virtualX) {
+        return midX + virtualX * UNIT;
     }
     // Get real y from virtual coordinate system
-    public int getRealY(int y) {
-        return midY - y * UNIT;
+    public static int getRealY(int virtualY) {
+        return midY - virtualY * UNIT;
     }
-    public static int roundX(int realX) {
-        int res = realX;
-        int temp = realX % PIXEL_SIZE;
-        if (temp != 0) {
-            if (temp <= PIXEL_SIZE / 2) {
-                res -= temp;
-            } else {
-                res += (PIXEL_SIZE - temp);
-            }
-        }
-        return res;
+    public static int getVirtualX(int realX) {
+        return Math.round((realX - midX) / (float) UNIT);
     }
-    public static int roundY(int realY) {
-        int res = realY;
-        int temp = realY % PIXEL_SIZE;
+    public static int getVirtualY(int realY) {
+        return Math.round((midY - realY) / (float) UNIT);
+    }
+    public static int getRealWidth(int virtualWidth) {
+        return virtualWidth * UNIT;
+    }
+    public static int getRealHeight(int virtualHeight) {
+        return virtualHeight * UNIT;
+    }
+    public static int getVirtualWidth(int realWidth) {
+        return Math.round(realWidth / (float) UNIT);
+    }
+    public static int getVirtualHeight(int realHeight) {
+        return Math.round(realHeight / (float) UNIT);
+    }
+    public static int roundXY(int realXY) {
+        int res = realXY;
+        int temp = realXY % PIXEL_SIZE;
         if (temp != 0) {
             if (temp <= PIXEL_SIZE / 2) {
                 res -= temp;
@@ -567,26 +574,26 @@ public class MainFrame extends javax.swing.JFrame {
         g2d.drawString("Y", midX + 10, 20);
         g2d.drawString("O", midX - 15, midY + 15);
 
-        g2d.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        // danh so don vi 1, 2, 3, 4, 5... truc Ox
-        for (int i = midX + UNIT; i < maxX; i += UNIT) {
-            g2d.drawLine(i, midY - 2, i, midY + 2);
-            g2d.drawString(String.valueOf((i - midX) / 30), i - 4, midY + 15);
-        }
-        for (int i = midX - UNIT; i > 0; i -= UNIT) {
-            g2d.drawLine(i, midY - 2, i, midY + 2);
-            //            g.drawString(String.valueOf((i - midX) / 30), i - 4, midY + 15);
-        }
-
-        // danh so don vi 1, 2, 3, 4, 5... truc Oy
-        for (int i = midY - UNIT; i > 0; i -= UNIT) {
-            g2d.drawLine(midX - 2, i, midX + 2, i);
-            g2d.drawString(String.valueOf((midY - i) / 28), midX - 20, i + 4);
-        }
-        for (int i = midY + UNIT; i < maxY; i += UNIT) {
-            g2d.drawLine(midX - 2, i, midX + 2, i);
-            //            g.drawString(String.valueOf((midY - i) / 30), midX - 20, i + 4);
-        }
+//        g2d.setFont(new Font("Tahoma", Font.PLAIN, 11));
+//        // danh so don vi 1, 2, 3, 4, 5... truc Ox
+//        for (int i = midX + UNIT; i < maxX; i += UNIT) {
+//            g2d.drawLine(i, midY - 2, i, midY + 2);
+//            g2d.drawString(String.valueOf((i - midX) / 30), i - 4, midY + 15);
+//        }
+//        for (int i = midX - UNIT; i > 0; i -= UNIT) {
+//            g2d.drawLine(i, midY - 2, i, midY + 2);
+//            //            g.drawString(String.valueOf((i - midX) / 30), i - 4, midY + 15);
+//        }
+//
+//        // danh so don vi 1, 2, 3, 4, 5... truc Oy
+//        for (int i = midY - UNIT; i > 0; i -= UNIT) {
+//            g2d.drawLine(midX - 2, i, midX + 2, i);
+//            g2d.drawString(String.valueOf((midY - i) / 28), midX - 20, i + 4);
+//        }
+//        for (int i = midY + UNIT; i < maxY; i += UNIT) {
+//            g2d.drawLine(midX - 2, i, midX + 2, i);
+//            //            g.drawString(String.valueOf((midY - i) / 30), midX - 20, i + 4);
+//        }
     }
     private void jCheckBoxGridModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxGridModeActionPerformed
         // TODO add your handling code here:
@@ -695,8 +702,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimation1ActionPerformed
         // TODO add your handling code here:
         HinhChuNhat hcn = new HinhChuNhat();
-        hcn.draw(getRealX(-3), getRealY(2), 6 * UNIT, 4 * UNIT, g2d);
-        hcn.scale(getRealX(-3), getRealY(2), 6 * UNIT, 4 * UNIT, 0.6f, 0.6f, g2d);
+        int x = getRealX(-30);
+        int y = getRealY(30);
+        int width = 10 * UNIT;
+        int height = 10 * UNIT;
+        hcn.draw(x, y, width, height, g2d);
+        ArrayList<Point> s = hcn.scale(getVirtualX(x), getVirtualY(y), getVirtualWidth(width), getVirtualHeight(height), 0.8f, 0.8f);
+        hcn.draw(s.get(0), s.get(1), g2d);
         jPanel2D.repaint();
     }//GEN-LAST:event_jButtonAnimation1ActionPerformed
 

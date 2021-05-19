@@ -58,13 +58,7 @@ public class HinhEllipse {
                 fy -= 2 * a2; // fy' = 2 * a2 * (y + unit) = fy + 2 * unit * a2
             }
             if (x % MainFrame.PIXEL_SIZE == 0) {
-                int tempY;
-                int temp = y % MainFrame.PIXEL_SIZE;
-                if (temp <= MainFrame.PIXEL_SIZE / 2) {
-                    tempY = y - temp;
-                } else {
-                    tempY = y + (MainFrame.PIXEL_SIZE - temp);
-                }
+                int tempY = MainFrame.roundXY(y);
                 put4Pixels(x, tempY, xE, yE, g2d);
             }
         }
@@ -84,13 +78,7 @@ public class HinhEllipse {
                 p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);
             }   
             if (y % MainFrame.PIXEL_SIZE == 0) {
-                int tempX;
-                int temp = x % MainFrame.PIXEL_SIZE;
-                if (temp <= MainFrame.PIXEL_SIZE / 2) {
-                    tempX = x - temp;
-                } else {
-                    tempX = x + (MainFrame.PIXEL_SIZE - temp);
-                }
+                int tempX = MainFrame.roundXY(x);
                 put4Pixels(tempX, y, xE, yE, g2d);
             }
         }
