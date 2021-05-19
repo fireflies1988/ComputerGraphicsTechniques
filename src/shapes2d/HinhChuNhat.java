@@ -53,12 +53,32 @@ public class HinhChuNhat {
         draw(tl.x, tl.y, width, height, g2d);
     }
     
-    // for rotating
+    // for rotating and scaling
     public void draw(Point tl, Point tr, Point bl, Point br, Graphics2D g2d) {
         DoanThang line = new DoanThang();
         line.draw(tl.x, tl.y, tr.x, tr.y, g2d);
         line.draw(tl.x, tl.y, bl.x, bl.y, g2d);
         line.draw(tr.x, tr.y, br.x, br.y, g2d);
         line.draw(bl.x, bl.y, br.x, br.y, g2d);
+    }
+    
+    public void scale(Point tl, Point tr, Point bl, Point br, float scaleX, float scaleY, Graphics2D g2d) {
+        tl.x = MainFrame.roundX((int) (tl.x * scaleX));
+        tl.y = MainFrame.roundY((int) (tl.y * scaleY));
+        tr.x = MainFrame.roundX((int) (tr.x * scaleX));
+        tr.y = MainFrame.roundY((int) (tr.y * scaleY));
+        bl.x = MainFrame.roundX((int) (bl.x * scaleX));
+        bl.y = MainFrame.roundY((int) (bl.y * scaleY));
+        br.x = MainFrame.roundX((int) (br.x * scaleX));
+        br.y = MainFrame.roundY((int) (br.y * scaleY));
+        draw(tl, tr, bl, br, g2d);
+    }
+    
+    public void scale(int x, int y, int width, int height, float scaleX, float scaleY, Graphics2D g2d) {
+        Point tl = new Point(x, y);
+        Point tr = new Point(x + width, y);
+        Point bl = new Point(x, y + height);
+        Point br = new Point(x + width, y + height);
+        scale(tl, tr, bl, br, scaleX, scaleY, g2d);
     }
 }

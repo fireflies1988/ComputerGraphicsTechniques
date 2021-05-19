@@ -103,7 +103,7 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxGridMode = new javax.swing.JCheckBox();
         jCheckBoxCoordSystem = new javax.swing.JCheckBox();
         jLabel20 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButtonAnimation1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -380,7 +380,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Animation");
 
-        jButton3.setText("Animation 1");
+        jButtonAnimation1.setText("Animation 1");
+        jButtonAnimation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnimation1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -411,7 +416,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(jButton3)
+                .addComponent(jButtonAnimation1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -438,7 +443,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(jButtonAnimation1)
                 .addContainerGap(242, Short.MAX_VALUE))
         );
 
@@ -510,6 +515,38 @@ public class MainFrame extends javax.swing.JFrame {
         String a = jTextFieldA.getText();
         String b = jTextFieldB.getText();
         return xE.equals("") || yE.equals("") || a.equals("") || b.equals("");
+    }
+    // Get real x from virtual coordinate system
+    public int getRealX(int x) {
+        return midX + x * UNIT;
+    }
+    // Get real y from virtual coordinate system
+    public int getRealY(int y) {
+        return midY - y * UNIT;
+    }
+    public static int roundX(int realX) {
+        int res = realX;
+        int temp = realX % PIXEL_SIZE;
+        if (temp != 0) {
+            if (temp <= PIXEL_SIZE / 2) {
+                res -= temp;
+            } else {
+                res += (PIXEL_SIZE - temp);
+            }
+        }
+        return res;
+    }
+    public static int roundY(int realY) {
+        int res = realY;
+        int temp = realY % PIXEL_SIZE;
+        if (temp != 0) {
+            if (temp <= PIXEL_SIZE / 2) {
+                res -= temp;
+            } else {
+                res += (PIXEL_SIZE - temp);
+            }
+        }
+        return res;
     }
     
     public void drawPixelGrid(Graphics2D g2d) {
@@ -655,6 +692,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxShapeActionPerformed
 
+    private void jButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimation1ActionPerformed
+        // TODO add your handling code here:
+        HinhChuNhat hcn = new HinhChuNhat();
+        hcn.draw(getRealX(-3), getRealY(2), 6 * UNIT, 4 * UNIT, g2d);
+        hcn.scale(getRealX(-3), getRealY(2), 6 * UNIT, 4 * UNIT, 0.6f, 0.6f, g2d);
+        jPanel2D.repaint();
+    }//GEN-LAST:event_jButtonAnimation1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -691,7 +736,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAnimation1;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDraw;
     private javax.swing.JCheckBox jCheckBoxCoordSystem;
