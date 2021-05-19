@@ -52,4 +52,13 @@ public class HinhChuNhat {
         
         draw(tl.x, tl.y, width, height, g2d);
     }
+    
+    // for rotating
+    public void draw(Point tl, Point tr, Point bl, Point br, Graphics2D g2d) {
+        DoanThang line = new DoanThang();
+        line.draw(tl.x, tl.y, tr.x, tr.y, g2d);
+        line.draw(tl.x, tl.y, bl.x, bl.y, g2d);
+        line.draw(tr.x, tr.y, br.x, br.y, g2d);
+        line.draw(bl.x, bl.y, br.x, br.y, g2d);
+    }
 }
