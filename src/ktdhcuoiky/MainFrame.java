@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import javax.swing.JOptionPane;
+import shapes2d.DoanThang;
 
 /**
  *
@@ -57,17 +59,17 @@ public class MainFrame extends javax.swing.JFrame {
         };
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxShape = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldX1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldY1 = new javax.swing.JTextField();
+        jTextFieldX2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldY2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -90,8 +92,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonDraw = new javax.swing.JButton();
+        jButtonClear = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jCheckBoxGridMode = new javax.swing.JCheckBox();
         jCheckBoxCoordSystem = new javax.swing.JCheckBox();
@@ -118,7 +120,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Chọn hình vẽ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đoạn thẳng", "Hình chữ nhật", "Hình tròn", "Hình Ellipse" }));
+        jComboBoxShape.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đoạn thẳng", "Hình chữ nhật", "Hình tròn", "Hình Ellipse" }));
 
         jPanel5.setLayout(new java.awt.CardLayout());
 
@@ -150,19 +152,19 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1))
+                        .addComponent(jTextFieldX1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2))
+                        .addComponent(jTextFieldY1))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(jTextFieldX2))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4)))
+                        .addComponent(jTextFieldY2)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -172,19 +174,19 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldX1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldY1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldX2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldY2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 46, Short.MAX_VALUE))
         );
 
@@ -333,9 +335,19 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("Chức năng");
 
-        jButton1.setText("Vẽ");
+        jButtonDraw.setText("Vẽ");
+        jButtonDraw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDrawActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Xóa");
+        jButtonClear.setText("Xóa");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Chế độ");
@@ -367,7 +379,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBoxShape, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,9 +392,9 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel20)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonDraw, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -401,15 +413,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxShape, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonDraw)
+                    .addComponent(jButtonClear))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -472,7 +484,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public boolean lackOfInformation() {
+        String x1 = jTextFieldX1.getText();
+        String y1 = jTextFieldY1.getText();
+        String x2 = jTextFieldX2.getText();
+        String y2 = jTextFieldY2.getText();
+        return x1.equals("") || x2.equals("") || y1.equals("") || y2.equals("");
+    }
+    
     public void drawPixelGrid(Graphics2D g2d) {
         g2d.setColor(Color.LIGHT_GRAY);
         for (int i = 5; i < maxX; i += PIXEL_SIZE) {
@@ -540,6 +559,36 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2D.repaint();
     }//GEN-LAST:event_jCheckBoxCoordSystemActionPerformed
 
+    private void jButtonDrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDrawActionPerformed
+        // TODO add your handling code here:
+        String selectedItem = (String) jComboBoxShape.getSelectedItem();
+        if (selectedItem.equals("Đoạn thẳng")) {
+            if (!lackOfInformation()) {
+                int x1 = midX + Integer.parseInt(jTextFieldX1.getText()) * UNIT;
+                int y1 = midY - Integer.parseInt(jTextFieldY1.getText()) * UNIT;
+                int x2 = midX + Integer.parseInt(jTextFieldX2.getText()) * UNIT;
+                int y2 = midY - Integer.parseInt(jTextFieldY2.getText()) * UNIT;
+                new DoanThang(x1, y1, x2, y2).draw(g2d);
+                jPanel2D.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
+            }
+        }
+    }//GEN-LAST:event_jButtonDrawActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        g2d.setBackground(new Color(255, 255, 255, 0));
+        g2d.clearRect(0, 0, maxX, maxY);
+        if (jCheckBoxGridMode.isSelected()) {
+            drawPixelGrid(g2d);
+        }
+        if (jCheckBoxCoordSystem.isSelected()) {
+            drawCoordinateSystem(g2d);
+        }
+        jPanel2D.repaint();
+    }//GEN-LAST:event_jButtonClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -576,12 +625,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonClear;
+    private javax.swing.JButton jButtonDraw;
     private javax.swing.JCheckBox jCheckBoxCoordSystem;
     private javax.swing.JCheckBox jCheckBoxGridMode;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxShape;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -611,16 +660,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldX1;
+    private javax.swing.JTextField jTextFieldX2;
+    private javax.swing.JTextField jTextFieldY1;
+    private javax.swing.JTextField jTextFieldY2;
     // End of variables declaration//GEN-END:variables
 }
