@@ -40,24 +40,24 @@ public class HinhChuNhat {
     }
     
     public void draw(Point virtualPt1, Point virtualPt2, Graphics2D g2d) {
-        int width = Math.abs(virtualPt1.x - virtualPt2.x);      
-        int height = Math.abs(virtualPt1.y - virtualPt2.y);
+        int virtualWidth = Math.abs(virtualPt1.x - virtualPt2.x);      
+        int virtualHeight = Math.abs(virtualPt1.y - virtualPt2.y);
         
         // Find top left point
         // case: x1 <= x2 && y1 >= y2
-        Point tl = new Point(virtualPt1.x, virtualPt1.y);
+        Point virtualTL = new Point(virtualPt1.x, virtualPt1.y);
         if (virtualPt1.x <= virtualPt2.x && virtualPt1.y <= virtualPt2.y) {
             // case: x1 <= x2 && y1 <= y2
-            tl = new Point(virtualPt1.x, virtualPt2.y);
+            virtualTL = new Point(virtualPt1.x, virtualPt2.y);
         } else if (virtualPt1.x >= virtualPt2.x && virtualPt1.y <= virtualPt2.y) {
             // case: x1 >= x2 && y1 <= y2
-            tl = new Point(virtualPt2.x, virtualPt2.y);
+            virtualTL = new Point(virtualPt2.x, virtualPt2.y);
         } else if (virtualPt1.x >= virtualPt2.x && virtualPt1.y >= virtualPt2.y) {
             // case: x1 >= x2 && y1 >= y2
-            tl = new Point(virtualPt2.x, virtualPt1.y);
+            virtualTL = new Point(virtualPt2.x, virtualPt1.y);
         }
         
-        draw(tl.x, tl.y, width, height, g2d);
+        draw(virtualTL.x, virtualTL.y, virtualWidth, virtualHeight, g2d);
     }
     
     // for rotating
@@ -68,6 +68,10 @@ public class HinhChuNhat {
         line.draw(virtualTR.x, virtualTR.y, virtualBR.x, virtualBR.y, g2d);
         line.draw(virtualBL.x, virtualBL.y, virtualBR.x, virtualBR.y, g2d);
     }
+
+    
+    
+    
     
     // return new virtual coordinates of top left and bottom right points after scaling
     public ArrayList<Point> scale(Point virtualTL, Point virtualBR, float scaleX, float scaleY) {
@@ -75,9 +79,6 @@ public class HinhChuNhat {
         virtualTL.y = Math.round(virtualTL.y * scaleY);
         virtualBR.x = Math.round(virtualBR.x * scaleX);
         virtualBR.y = Math.round(virtualBR.y * scaleY);
-        
-//        Point realTL = new Point(MainFrame.getRealX(virtualTL.x), MainFrame.getRealY(virtualTL.y));
-//        Point realBR = new Point(MainFrame.getRealX(virtualBR.x), MainFrame.getRealY(virtualBR.y));
         return new ArrayList<>(Arrays.asList(virtualTL, virtualBR));
     }
     
@@ -88,18 +89,56 @@ public class HinhChuNhat {
         return scale(virtualTL, virtualBR, scaleX, scaleY);
     }    
     
+    
+    
+    
+    
     public Point getCenterPoint(Point virtualTL, Point virtualBR) {
         return new Point(Math.round((virtualTL.x + virtualBR.x) / 2.0f), Math.round((virtualTL.y + virtualBR.y) / 2.0f));
     }
+
+    
+    
+    
     
     public ArrayList<Point> translate(Point virtualTL, Point virtualBR, int virtualDx, int virtualDy) {
         virtualTL.x += virtualDx;
         virtualTL.y += virtualDy;
         virtualBR.x += virtualDx;
         virtualBR.y += virtualDy;
-        
-//        Point realTL = new Point(MainFrame.getRealX(virtualTL.x), MainFrame.getRealY(virtualTL.y));
-//        Point realBR = new Point(MainFrame.getRealX(virtualBR.x), MainFrame.getRealY(virtualBR.y));
         return new ArrayList<>(Arrays.asList(virtualTL, virtualBR));
+    }
+    
+    public ArrayList<Point> translate(int virtualX, int virtualY, int virtualWidth, int virtualHeight, int virtualDx, int virtualDy) {
+        Point virtualTL = new Point(virtualX, virtualY);
+        Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
+        return translate(virtualTL, virtualBR, virtualDx, virtualDy);
+    }
+
+    
+    
+    
+    
+    public ArrayList<Point> rotate(Point virtualTL, Point virtualBR, int angle) {
+        int virtualWidth = Math.abs(virtualTL.x - virtualBR.x);
+        int virtualHeight = Math.abs(virtualTL.y - virtualBR.y);
+        Point virtualTR = new Point(virtualTL.x + virtualWidth, virtualTL.y);
+        Point virtualBL = new Point(virtualTL.x, virtualTL.y - virtualHeight);
+        
+        virtualTL.x = (int) Math.round(virtualTL.x * Math.cos(Math.toRadians(angle)) - virtualTL.y * Math.sin(Math.toRadians(angle)));
+        virtualTL.y = (int) Math.round(virtualTL.x * Math.sin(Math.toRadians(angle)) + virtualTL.y * Math.cos(Math.toRadians(angle)));
+        virtualTR.x = (int) Math.round(virtualTR.x * Math.cos(Math.toRadians(angle)) - virtualTR.y * Math.sin(Math.toRadians(angle)));
+        virtualTR.y = (int) Math.round(virtualTR.x * Math.sin(Math.toRadians(angle)) + virtualTR.y * Math.cos(Math.toRadians(angle)));
+        virtualBL.x = (int) Math.round(virtualBL.x * Math.cos(Math.toRadians(angle)) - virtualBL.y * Math.sin(Math.toRadians(angle)));
+        virtualBL.y = (int) Math.round(virtualBL.x * Math.sin(Math.toRadians(angle)) + virtualBL.y * Math.cos(Math.toRadians(angle)));
+        virtualBR.x = (int) Math.round(virtualBR.x * Math.cos(Math.toRadians(angle)) - virtualBR.y * Math.sin(Math.toRadians(angle)));
+        virtualBR.y = (int) Math.round(virtualBR.x * Math.sin(Math.toRadians(angle)) + virtualBR.y * Math.cos(Math.toRadians(angle)));
+        return new ArrayList<Point>(Arrays.asList(virtualTL, virtualTR, virtualBL, virtualBR));
+    }
+    
+    public ArrayList<Point> rotate(int virtualX, int virtualY, int virtualWidth, int virtualHeight, int angle) {
+        Point virtualTL = new Point(virtualX, virtualY);
+        Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
+        return rotate(virtualTL, virtualBR, angle);
     }
 }

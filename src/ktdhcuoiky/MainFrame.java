@@ -696,13 +696,25 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimation1ActionPerformed
         // TODO add your handling code here:
         HinhChuNhat hcn = new HinhChuNhat();
-        int x = getRealX(-30);
-        int y = getRealY(30);
-        int width = 10 * UNIT;
-        int height = 10 * UNIT;
-        hcn.draw(x, y, width, height, g2d);
-        ArrayList<Point> s = hcn.scale(getVirtualX(x), getVirtualY(y), getVirtualWH(width), getVirtualWH(height), 0.8f, 0.8f);
-        hcn.draw(s.get(0), s.get(1), g2d);
+        int virtualX = -30;
+        int virtualY = 30;
+        Point virtualTL = new Point(-30, 30);
+        Point virtualBR = new Point(30, -30);
+        int virtualWidth = 60;
+        int virtualHeight = 60;
+        hcn.draw(virtualTL, virtualBR, g2d);
+//        ArrayList<Point> s = hcn.scale(virtualX, virtualY, virtualWidth, virtualHeight, 0.9f, 0.9f);
+//        System.out.println(s);
+//        hcn.draw(s.get(0), s.get(1), g2d);
+//        ArrayList<Point> t = hcn.translate(s.get(0), s.get(1), 20, 20);
+//        System.out.println(t);
+//        hcn.draw(t.get(0), t.get(1), g2d);
+        ArrayList<Point> r = hcn.rotate(virtualTL, virtualBR, 20);
+        System.out.println(r.get(0));
+        System.out.println(r.get(1));
+        System.out.println(r.get(2));
+        System.out.println(r.get(3));
+        hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
         jPanel2D.repaint();
     }//GEN-LAST:event_jButtonAnimation1ActionPerformed
 
