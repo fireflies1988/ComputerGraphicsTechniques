@@ -6,6 +6,9 @@
 package shapes2d;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
 import ktdhcuoiky.MainFrame;
 
 /**
@@ -66,5 +69,44 @@ public class DoanThang {
                 g2d.fillRect(x - offset, y - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);  
             }
         }
+    }
+    
+    public void draw(Point virtualPt1, Point virtualPt2, Graphics2D g2d) {
+        draw(virtualPt1.x, virtualPt1.y, virtualPt2.x, virtualPt2.y, g2d);
+    }
+    
+    
+    
+    
+    public ArrayList<Point> translate(Point virtualPt1, Point virtualPt2, int virtualDx, int virtualDy) {
+        Point pt1 = new Point(virtualPt1);
+        Point pt2 = new Point(virtualPt2);
+        
+        pt1.x += virtualDx;
+        pt1.y += virtualDy;
+        pt2.x += virtualDx;
+        pt2.y += virtualDy;
+        
+        return new ArrayList<>(Arrays.asList(pt1, pt2));
+    }
+    
+    
+    
+    
+    public ArrayList<Point> rotate(Point virtualPt1, Point virtualPt2, float angle) {
+        Point pt1 = new Point(virtualPt1);
+        Point pt2 = new Point(virtualPt2);
+        
+        float cos = (float) Math.cos(Math.toRadians(angle));
+        float sin = (float) Math.sin(Math.toRadians(angle));
+        
+        int temp = pt1.x;
+        pt1.x = Math.round(pt1.x * cos - pt1.y * sin);
+        pt1.y = Math.round(temp * sin + pt1.y * cos);
+        temp = pt2.x;
+        pt2.x = Math.round(pt2.x * cos - pt2.y * sin);
+        pt2.y = Math.round(temp * sin + pt2.y * cos);
+        
+        return new ArrayList<>(Arrays.asList(pt1, pt2));
     }
 }
