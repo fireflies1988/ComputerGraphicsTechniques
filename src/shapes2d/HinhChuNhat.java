@@ -116,7 +116,7 @@ public class HinhChuNhat {
     
     
     
-    public ArrayList<Point> rotate(Point virtualTL, Point virtualBR, int angle) {
+    public ArrayList<Point> rotate(Point virtualTL, Point virtualBR, float angle) {
         int virtualWidth = Math.abs(virtualTL.x - virtualBR.x);
         int virtualHeight = Math.abs(virtualTL.y - virtualBR.y);
         Point virtualTR = new Point(virtualTL.x + virtualWidth, virtualTL.y);
@@ -160,7 +160,7 @@ public class HinhChuNhat {
         return new ArrayList<Point>(Arrays.asList(tl, tr, bl, br));
     }
     
-    public ArrayList<Point> rotate(int virtualX, int virtualY, int virtualWidth, int virtualHeight, int angle) {
+    public ArrayList<Point> rotate(int virtualX, int virtualY, int virtualWidth, int virtualHeight, float angle) {
         Point virtualTL = new Point(virtualX, virtualY);
         Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
         return rotate(virtualTL, virtualBR, angle);

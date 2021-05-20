@@ -11,8 +11,10 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import ktdhcuoiky.MainFrame;
 import static ktdhcuoiky.MainFrame.maxX;
 import static ktdhcuoiky.MainFrame.maxY;
 import shapes2d.HinhChuNhat;
@@ -22,22 +24,22 @@ import shapes2d.HinhChuNhat;
  * @author COMPUTER
  */
 public class Animation1 {
-    private Timer timer;
+    public Timer timer;
     private JPanel jPanel;
     private Graphics2D g2d;
     private HinhChuNhat hcn;
-    private int angle = 5;
+    private float angle = 10.0f;
     private final Point TL = new Point(-40, 40);
     private final Point BR = new Point(40, -40);
-    Point virtualTL;
-    Point virtualBR;
+    private Random random = new Random();
     ArrayList<Point> r, s;
     
     public Animation1(JPanel jPanel, Graphics2D g2d) {
         this.jPanel = jPanel;
         this.g2d = g2d;
+        MainFrame.PIXEL_SIZE = 3;
         hcn = new HinhChuNhat();
-        timer = new Timer(200, new ActionListener() {
+        timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timer1ActionPerformed(e);
@@ -47,19 +49,22 @@ public class Animation1 {
     }
 
     public void timer1ActionPerformed(ActionEvent e) {
-        g2d.setBackground(new Color(255, 255, 255, 0));
+//        g2d.setBackground(new Color(255, 255, 255, 0));
+        g2d.setBackground(Color.BLACK);
         g2d.clearRect(0, 0, maxX, maxY);
-        virtualTL = new Point(TL);
-        virtualBR = new Point(BR);
-        for (int i = 0; i < 45; i++) {
+        g2d.setColor(Color.GREEN);
+        Point virtualTL = new Point(TL);
+        Point virtualBR = new Point(BR);
+        for (int i = 1; i < 24; i++) {
+//            g2d.setColor(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
             r = hcn.rotate(virtualTL, virtualBR, i * angle);
             hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
-            s = hcn.scale(virtualTL, virtualBR, 0.98f, 0.98f);  // 0.83
+            s = hcn.scale(virtualTL, virtualBR, 0.92f, 0.92f);
             System.out.println(s);
             virtualTL = s.get(0);
             virtualBR = s.get(1);
         }
         jPanel.repaint();
-        angle += 5;
+        angle += 0.5;
     }
 }

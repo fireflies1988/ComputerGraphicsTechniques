@@ -25,11 +25,12 @@ import shapes2d.HinhTron;
  */
 public class MainFrame extends javax.swing.JFrame {
     public final static int UNIT = 5;
-    public final static int PIXEL_SIZE = 5;
+    public static int PIXEL_SIZE = 5;
     public static int maxX, maxY;
     public static int midX, midY;
     public BufferedImage offImage;
     public Graphics2D g2d;
+    private Animation1 animation1;
     /**
      * Creates new form MainFrame
      */
@@ -104,7 +105,7 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxGridMode = new javax.swing.JCheckBox();
         jCheckBoxCoordSystem = new javax.swing.JCheckBox();
         jLabel20 = new javax.swing.JLabel();
-        jButtonAnimation1 = new javax.swing.JButton();
+        jToggleButtonAnimation1 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -381,10 +382,10 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Animation");
 
-        jButtonAnimation1.setText("Animation 1");
-        jButtonAnimation1.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButtonAnimation1.setText("Animation 1");
+        jToggleButtonAnimation1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAnimation1ActionPerformed(evt);
+                jToggleButtonAnimation1ActionPerformed(evt);
             }
         });
 
@@ -392,7 +393,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jComboBoxShape, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -416,8 +417,8 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jCheckBoxCoordSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jButtonAnimation1)
+                .addGap(59, 59, 59)
+                .addComponent(jToggleButtonAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -444,8 +445,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAnimation1)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addComponent(jToggleButtonAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(233, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -693,10 +694,18 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxShapeActionPerformed
 
-    private void jButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimation1ActionPerformed
+    private void jToggleButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation1ActionPerformed
         // TODO add your handling code here:
-        new Animation1(jPanel2D, g2d);
-    }//GEN-LAST:event_jButtonAnimation1ActionPerformed
+        if (jToggleButtonAnimation1.isSelected()) {
+            animation1 = new Animation1(jPanel2D, g2d);
+        } else {
+            animation1.timer.stop();
+            MainFrame.PIXEL_SIZE = 5;
+            g2d.setBackground(new Color(255, 255, 255, 0));
+            g2d.clearRect(0, 0, maxX, maxY);
+            jPanel2D.repaint();
+        }
+    }//GEN-LAST:event_jToggleButtonAnimation1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -734,7 +743,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAnimation1;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDraw;
     private javax.swing.JCheckBox jCheckBoxCoordSystem;
@@ -780,5 +788,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldY2;
     private javax.swing.JTextField jTextFieldYC;
     private javax.swing.JTextField jTextFieldYE;
+    private javax.swing.JToggleButton jToggleButtonAnimation1;
     // End of variables declaration//GEN-END:variables
 }
