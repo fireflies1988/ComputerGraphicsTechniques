@@ -5,6 +5,7 @@
  */
 package animation;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -12,47 +13,52 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import static ktdhcuoiky.MainFrame.maxX;
+import static ktdhcuoiky.MainFrame.maxY;
 import shapes2d.HinhChuNhat;
 
 /**
  *
  * @author COMPUTER
  */
-public class Animation1 implements ActionListener {
-    private Timer timer1, timer2;
+public class Animation1 {
+    private Timer timer;
     private JPanel jPanel;
     private Graphics2D g2d;
     private HinhChuNhat hcn;
-    private int angle = 0;
-    Point virtualTL = new Point(-40, 40);
-    Point virtualTR = new Point(-40, 40);
+    private int angle = 5;
+    private final Point TL = new Point(-40, 40);
+    private final Point BR = new Point(40, -40);
+    Point virtualTL;
+    Point virtualBR;
+    ArrayList<Point> r, s;
     
     public Animation1(JPanel jPanel, Graphics2D g2d) {
         this.jPanel = jPanel;
         this.g2d = g2d;
         hcn = new HinhChuNhat();
-        timer1 = new Timer(100, this);
-        timer1.start();
-        timer2 = new Timer(100, new ActionListener() {
+        timer = new Timer(200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < 10; i++) {
-                    ArrayList<Point> r = hcn.rotate(new Point(-40, 40), new Point(40, -40), i * angle);
-                    hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
-                    jPanel.repaint();
-                }
-                timer2.stop();
+                timer1ActionPerformed(e);
             }
         });
+        timer.start();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-//        g2d.setBackground(new Color(255, 255, 255, 0));
-//        g2d.clearRect(0, 0, maxX, maxY);
-//        timer2.start();
-        ArrayList<Point> r = hcn.rotate(new Point(-40, 40), new Point(40, -40), angle);
-        hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
+    public void timer1ActionPerformed(ActionEvent e) {
+        g2d.setBackground(new Color(255, 255, 255, 0));
+        g2d.clearRect(0, 0, maxX, maxY);
+        virtualTL = new Point(TL);
+        virtualBR = new Point(BR);
+        for (int i = 0; i < 45; i++) {
+            r = hcn.rotate(virtualTL, virtualBR, i * angle);
+            hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
+            s = hcn.scale(virtualTL, virtualBR, 0.98f, 0.98f);  // 0.83
+            System.out.println(s);
+            virtualTL = s.get(0);
+            virtualBR = s.get(1);
+        }
         jPanel.repaint();
         angle += 5;
     }

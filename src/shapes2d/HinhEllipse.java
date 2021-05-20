@@ -63,7 +63,7 @@ public class HinhEllipse {
                 p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);
                 fy -= 2 * a2; // fy' = 2 * a2 * (y + unit) = fy + 2 * unit * a2
             }
-            if (x % MainFrame.PIXEL_SIZE == 0) {
+            if (x % MainFrame.UNIT == 0) {
                 int tempY = MainFrame.roundXY(y);
                 put4Pixels(x, tempY, xE, yE, g2d);
             }
@@ -83,7 +83,7 @@ public class HinhEllipse {
                 fx += 2 * b2;   // here too. It's redundant.
                 p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);
             }   
-            if (y % MainFrame.PIXEL_SIZE == 0) {
+            if (y % MainFrame.UNIT == 0) {
                 int tempX = MainFrame.roundXY(x);
                 put4Pixels(tempX, y, xE, yE, g2d);
             }

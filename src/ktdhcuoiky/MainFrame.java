@@ -539,12 +539,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
     public static int roundXY(int realXY) {
         int res = realXY;
-        int temp = realXY % PIXEL_SIZE;
+        int temp = realXY % UNIT;
         if (temp != 0) {
-            if (temp <= PIXEL_SIZE / 2) {
+            if (temp <= UNIT / 2) {
                 res -= temp;
             } else {
-                res += (PIXEL_SIZE - temp);
+                res += (UNIT - temp);
             }
         }
         return res;
@@ -552,10 +552,10 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void drawPixelGrid(Graphics2D g2d) {
         g2d.setColor(Color.LIGHT_GRAY);
-        for (int i = 5; i < maxX; i += PIXEL_SIZE) {
+        for (int i = 5; i < maxX; i += UNIT) {
             g2d.drawLine(i, 0, i, maxY);
         }
-        for (int i = 5; i < maxY; i += PIXEL_SIZE) {
+        for (int i = 5; i < maxY; i += UNIT) {
             g2d.drawLine(0, i, maxX, i);
         }
     }

@@ -49,11 +49,11 @@ public class HinhTron {
         put8Pixels(x, y, xC, yC, g2d); // putpixel va tinh tien hinh tron tai (0, 0) sang (xC, yC) 
 
         while (x < y) {
-            x += MainFrame.PIXEL_SIZE;
+            x += MainFrame.UNIT;
             if (f < 0) f += 2 * x + 3;
             else {
                 f += 2 * (x - y) + 5;
-                y -= MainFrame.PIXEL_SIZE;
+                y -= MainFrame.UNIT;
             }
             put8Pixels(x, y, xC, yC, g2d);
         }

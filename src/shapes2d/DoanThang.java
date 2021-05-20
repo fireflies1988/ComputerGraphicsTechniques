@@ -34,7 +34,7 @@ public class DoanThang {
         x = x1;
         y = y1;
 
-        int xUnit = MainFrame.PIXEL_SIZE, yUnit = MainFrame.PIXEL_SIZE;
+        int xUnit = MainFrame.UNIT, yUnit = MainFrame.UNIT;
         if (x1 > x2) {
             xUnit = -xUnit;
         }
