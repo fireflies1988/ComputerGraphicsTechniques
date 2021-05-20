@@ -16,8 +16,6 @@ import ktdhcuoiky.MainFrame;
  * @author COMPUTER
  */
 public class HinhChuNhat {
-    private Point tl, tr, bl, br;
-    private int x, y, width, height;
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
     public HinhChuNhat() {
@@ -89,13 +87,6 @@ public class HinhChuNhat {
         return scale(virtualTL, virtualBR, scaleX, scaleY);
     }    
     
-    
-    
-    
-    
-    public Point getCenterPoint(Point virtualTL, Point virtualBR) {
-        return new Point(Math.round((virtualTL.x + virtualBR.x) / 2.0f), Math.round((virtualTL.y + virtualBR.y) / 2.0f));
-    }
 
     
     
@@ -125,14 +116,36 @@ public class HinhChuNhat {
         Point virtualTR = new Point(virtualTL.x + virtualWidth, virtualTL.y);
         Point virtualBL = new Point(virtualTL.x, virtualTL.y - virtualHeight);
         
-        virtualTL.x = (int) Math.round(virtualTL.x * Math.cos(Math.toRadians(angle)) - virtualTL.y * Math.sin(Math.toRadians(angle)));
-        virtualTL.y = (int) Math.round(virtualTL.x * Math.sin(Math.toRadians(angle)) + virtualTL.y * Math.cos(Math.toRadians(angle)));
-        virtualTR.x = (int) Math.round(virtualTR.x * Math.cos(Math.toRadians(angle)) - virtualTR.y * Math.sin(Math.toRadians(angle)));
-        virtualTR.y = (int) Math.round(virtualTR.x * Math.sin(Math.toRadians(angle)) + virtualTR.y * Math.cos(Math.toRadians(angle)));
-        virtualBL.x = (int) Math.round(virtualBL.x * Math.cos(Math.toRadians(angle)) - virtualBL.y * Math.sin(Math.toRadians(angle)));
-        virtualBL.y = (int) Math.round(virtualBL.x * Math.sin(Math.toRadians(angle)) + virtualBL.y * Math.cos(Math.toRadians(angle)));
-        virtualBR.x = (int) Math.round(virtualBR.x * Math.cos(Math.toRadians(angle)) - virtualBR.y * Math.sin(Math.toRadians(angle)));
-        virtualBR.y = (int) Math.round(virtualBR.x * Math.sin(Math.toRadians(angle)) + virtualBR.y * Math.cos(Math.toRadians(angle)));
+        float cos = (float) Math.cos(Math.toRadians(angle));
+        float sin = (float) Math.sin(Math.toRadians(angle));
+        
+        int temp = virtualTL.x;
+        virtualTL.x = Math.round(virtualTL.x * cos - virtualTL.y * sin);
+        virtualTL.y = Math.round(temp * sin + virtualTL.y * cos);
+        temp = virtualTR.x;
+        virtualTR.x = Math.round(virtualTR.x * cos - virtualTR.y * sin);
+        virtualTR.y = Math.round(temp * sin + virtualTR.y * cos);
+        temp = virtualBL.x;
+        virtualBL.x = Math.round(virtualBL.x * cos - virtualBL.y * sin);
+        virtualBL.y = Math.round(temp * sin + virtualBL.y * cos);
+        temp = virtualBR.x;
+        virtualBR.x = Math.round(virtualBR.x * cos - virtualBR.y * sin);
+        virtualBR.y = Math.round(temp * sin + virtualBR.y * cos);
+        
+//        virtualTL.x = Math.round(virtualTL.x * cos - virtualTL.y * sin);
+//        virtualTL.y = Math.round(virtualTL.x * sin + virtualTL.y * cos);
+//        System.out.println(virtualTL);
+//        virtualTR.x = Math.round(virtualTR.x * cos - virtualTR.y * sin);
+//        virtualTR.y = Math.round(virtualTR.x * sin + virtualTR.y * cos);
+//        System.out.println(virtualTR.y);
+//        System.out.println(virtualTR);
+//        virtualBL.x = Math.round(virtualBL.x * cos - virtualBL.y * sin);
+//        virtualBL.y = Math.round(virtualBL.x * sin + virtualBL.y * cos);
+//        System.out.println(virtualBL);
+//        virtualBR.x = Math.round(virtualBR.x * cos - virtualBR.y * sin);
+//        virtualBR.y = Math.round(virtualBR.x * sin + virtualBR.y * cos);
+//        System.out.println(virtualBR);
+
         return new ArrayList<Point>(Arrays.asList(virtualTL, virtualTR, virtualBL, virtualBR));
     }
     
@@ -140,5 +153,12 @@ public class HinhChuNhat {
         Point virtualTL = new Point(virtualX, virtualY);
         Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
         return rotate(virtualTL, virtualBR, angle);
+    }
+    
+    
+    
+    
+    public Point getCenterPoint(Point virtualTL, Point virtualBR) {
+        return new Point(Math.round((virtualTL.x + virtualBR.x) / 2.0f), Math.round((virtualTL.y + virtualBR.y) / 2.0f));
     }
 }

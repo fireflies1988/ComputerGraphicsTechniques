@@ -5,6 +5,7 @@
  */
 package ktdhcuoiky;
 
+import animation.Animation1;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,7 +13,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import shapes2d.DoanThang;
 import shapes2d.HinhChuNhat;
@@ -45,7 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         offImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
         g2d = offImage.createGraphics();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -695,27 +695,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnimation1ActionPerformed
         // TODO add your handling code here:
-        HinhChuNhat hcn = new HinhChuNhat();
-        int virtualX = -30;
-        int virtualY = 30;
-        Point virtualTL = new Point(-30, 30);
-        Point virtualBR = new Point(30, -30);
-        int virtualWidth = 60;
-        int virtualHeight = 60;
-        hcn.draw(virtualTL, virtualBR, g2d);
-//        ArrayList<Point> s = hcn.scale(virtualX, virtualY, virtualWidth, virtualHeight, 0.9f, 0.9f);
-//        System.out.println(s);
-//        hcn.draw(s.get(0), s.get(1), g2d);
-//        ArrayList<Point> t = hcn.translate(s.get(0), s.get(1), 20, 20);
-//        System.out.println(t);
-//        hcn.draw(t.get(0), t.get(1), g2d);
-        ArrayList<Point> r = hcn.rotate(virtualTL, virtualBR, 20);
-        System.out.println(r.get(0));
-        System.out.println(r.get(1));
-        System.out.println(r.get(2));
-        System.out.println(r.get(3));
-        hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
-        jPanel2D.repaint();
+        new Animation1(jPanel2D, g2d);
     }//GEN-LAST:event_jButtonAnimation1ActionPerformed
 
     /**
