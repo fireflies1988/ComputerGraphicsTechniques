@@ -10,8 +10,15 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import ktdhcuoiky.MainFrame;
@@ -26,19 +33,29 @@ import static ktdhcuoiky.MainFrame.maxY1;
 public class Animation1 {
     private final Point TL = new Point(-40, 40);
     private final Point BR = new Point(40, -40);
-    public Timer timer;
     private JPanel jPanel;
     private Graphics2D g2d;
+    public Timer timer;
     private Rectangle hcn;
+    ArrayList<Point> r, s;
     private float angle = 10.0f;
     private Random random = new Random();
-    ArrayList<Point> r, s;
+    public Clip clip;
     
-    public Animation1(JPanel jPanel, Graphics2D g2d) {
+    public Animation1(JPanel jPanel, Graphics2D g2d) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         this.jPanel = jPanel;
         this.g2d = g2d;
         MainFrame.PIXEL_SIZE = 3;
+        
+        File file = new File("src/audio/Universal - Vibe Tracks.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        
         hcn = new Rectangle();
+        
         timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +77,6 @@ public class Animation1 {
             r = hcn.rotate(virtualTL, virtualBR, i * angle);
             hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
             s = hcn.scale(virtualTL, virtualBR, 0.92f, 0.92f);
-            System.out.println(s);
             virtualTL = s.get(0);
             virtualBR = s.get(1);
         }

@@ -14,6 +14,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import shapes2d.Line;
 import shapes2d.Rectangle;
@@ -31,12 +36,14 @@ public class MainFrame extends javax.swing.JFrame {
     // jPanel2D
     public static int maxX1, maxY1;  // 760 670 perfect
     public static int midX1, midY1;
-    public BufferedImage offImage;
+    public BufferedImage offImage1;
     public Graphics2D g2d;
     
     // jPanel3D
     public static int maxX2, maxY2; 
     public static int midX2, midY2;
+    public BufferedImage offImage2;
+    public Graphics2D g3d;
     
     // Animation
     private Animation1 animation1;
@@ -56,8 +63,8 @@ public class MainFrame extends javax.swing.JFrame {
         midX1 = maxX1 / 2;
         midY1 = maxY1 / 2;
         System.out.println(midX1 + " " + midY1);
-        offImage = new BufferedImage(maxX1, maxY1, BufferedImage.TYPE_INT_ARGB);
-        g2d = offImage.createGraphics();
+        offImage1 = new BufferedImage(maxX1, maxY1, BufferedImage.TYPE_INT_ARGB);
+        g2d = offImage1.createGraphics();
         
         // jPanel3D
         System.out.println("3D");
@@ -67,6 +74,8 @@ public class MainFrame extends javax.swing.JFrame {
         midX2 = maxX2 / 2;
         midY2 = maxY2 / 2;
         System.out.println(midX2 + " " + midY2);
+        offImage2 = new BufferedImage(maxX2, maxY2, BufferedImage.TYPE_INT_ARGB);
+        g3d = offImage2.createGraphics();
     }
     
     /**
@@ -83,7 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2D = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(offImage, 0, 0, null);
+                g.drawImage(offImage1, 0, 0, null);
             }
         };
         jPanel3 = new javax.swing.JPanel();
@@ -133,7 +142,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3D = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                //        g.drawImage(offImage2, 0, 0, null);
+                g.drawImage(offImage2, 0, 0, null);
             }
         };
         jPanel4 = new javax.swing.JPanel();
@@ -1115,9 +1124,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation1ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation1.isSelected()) {
-            animation1 = new Animation1(jPanel2D, g2d);
+            try {
+                animation1 = new Animation1(jPanel2D, g2d);
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             animation1.timer.stop();
+            animation1.clip.stop();
             MainFrame.PIXEL_SIZE = 5;
             g2d.setBackground(new Color(255, 255, 255, 0));
             g2d.clearRect(0, 0, maxX1, maxY1);
@@ -1148,9 +1162,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation2ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation2.isSelected()) {
-            animation2 = new Animation2(jPanel2D, g2d);
+            try {
+                animation2 = new Animation2(jPanel2D, g2d);
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             animation2.timer.stop();
+            animation2.clip.stop();
             MainFrame.PIXEL_SIZE = 5;
             g2d.setBackground(new Color(255, 255, 255, 0));
             g2d.clearRect(0, 0, maxX1, maxY1);

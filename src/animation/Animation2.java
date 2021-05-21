@@ -10,7 +10,14 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import ktdhcuoiky.MainFrame;
@@ -34,13 +41,23 @@ public class Animation2 {
     private Circle circle;
     private ArrayList<Point> rl;
     private Point rc1, rc2;
+    public Clip clip;
     
-    public Animation2(JPanel jPanel, Graphics2D g2d) {
+    public Animation2(JPanel jPanel, Graphics2D g2d) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         this.jPanel = jPanel;
         this.g2d = g2d;
         MainFrame.PIXEL_SIZE = 3;
+        
+        File file = new File("src/audio/Invisible - Vibe Tracks.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        
         line = new Line();
         circle = new Circle();
+        
         timer = new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
