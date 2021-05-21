@@ -185,7 +185,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jCheckBoxGridMode1 = new javax.swing.JCheckBox();
         jCheckBoxCoordSystem1 = new javax.swing.JCheckBox();
-        jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -205,9 +204,9 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Chọn hình vẽ");
+        jLabel1.setText("Choose a shape");
 
-        jComboBoxShape.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đoạn thẳng", "Hình chữ nhật", "Hình tròn", "Hình Ellipse" }));
+        jComboBoxShape.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Line", "Rectangle", "Circle", "Ellipse" }));
         jComboBoxShape.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxShapeActionPerformed(evt);
@@ -217,7 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelCard.setLayout(new java.awt.CardLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Tọa độ điểm");
+        jLabel2.setText("Point coordinates");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("x1");
@@ -285,7 +284,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelCard.add(jPanelLineAndRectCard, "cardLineAndRect");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Tọa độ tâm");
+        jLabel7.setText("Center coordinate");
 
         jLabelXC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelXC.setText("x");
@@ -294,7 +293,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelYC.setText("y");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("Bán kính");
+        jLabel10.setText("Radius");
 
         jLabelR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelR.setText("r");
@@ -349,7 +348,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelCard.add(jPanelCircleCard, "cardCircle");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("Tọa độ tâm");
+        jLabel12.setText("Center coordinate");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("a");
@@ -361,7 +360,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel15.setText("y");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Bán kính");
+        jLabel16.setText("Radius");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("b");
@@ -425,9 +424,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelCard.add(jPanelEllipseCard, "cardEllipse");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setText("Chức năng");
+        jLabel19.setText("Functions");
 
-        jButtonDraw.setText("Vẽ");
+        jButtonDraw.setText("Draw");
         jButtonDraw.setToolTipText("");
         jButtonDraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,7 +434,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonClear.setText("Xóa");
+        jButtonClear.setText("Clear");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonClearActionPerformed(evt);
@@ -443,16 +442,16 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel18.setText("Chế độ");
+        jLabel18.setText("Mode");
 
-        jCheckBoxGridMode.setText("Lưới pixels");
+        jCheckBoxGridMode.setText("Pixel grid");
         jCheckBoxGridMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxGridModeActionPerformed(evt);
             }
         });
 
-        jCheckBoxCoordSystem.setText("Trục tọa độ");
+        jCheckBoxCoordSystem.setText("Coordinate axes");
         jCheckBoxCoordSystem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxCoordSystemActionPerformed(evt);
@@ -578,7 +577,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Chọn hình vẽ");
+        jLabel8.setText("Choose a shape");
 
         jComboBoxShape1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đoạn thẳng", "Hình chữ nhật", "Hình tròn", "Hình Ellipse" }));
         jComboBoxShape1.addActionListener(new java.awt.event.ActionListener() {
@@ -610,7 +609,7 @@ public class MainFrame extends javax.swing.JFrame {
             jPanelLineAndRectCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLineAndRectCard1Layout.createSequentialGroup()
                 .addComponent(jLabel9)
-                .addGap(0, 110, Short.MAX_VALUE))
+                .addGap(0, 117, Short.MAX_VALUE))
             .addGroup(jPanelLineAndRectCard1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelLineAndRectCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,7 +695,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabelR1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldR1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanelCircleCard1Layout.setVerticalGroup(
             jPanelCircleCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,9 +831,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel34.setText("Animation");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -849,7 +845,6 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel32)
                             .addComponent(jLabel33)
-                            .addComponent(jLabel34)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jButtonDraw1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -884,9 +879,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBoxGridMode1)
                     .addComponent(jCheckBoxCoordSystem1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel34)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -896,8 +889,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3D, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1049,7 +1042,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String selectedItem = (String) jComboBoxShape.getSelectedItem();
         g2d.setColor(Color.BLACK);
-        if (selectedItem.equals("Đoạn thẳng")) {
+        if (selectedItem.equals("Line")) {
             if (!lackInformation()) {
                 int virtualX1 = Integer.parseInt(jTextFieldX1.getText());
                 int virtualY1 = Integer.parseInt(jTextFieldY1.getText());
@@ -1058,9 +1051,9 @@ public class MainFrame extends javax.swing.JFrame {
                 new Line().draw(virtualX1, virtualY1, virtualX2, virtualY2, g2d);
                 jPanel2D.repaint();
             } else {
-                JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
+                JOptionPane.showMessageDialog(this, "Missing field(s). Please fill in all the fields and try again.");
             }
-        } else if (selectedItem.equals("Hình chữ nhật")) {
+        } else if (selectedItem.equals("Rectangle")) {
             if (!lackInformation()) {
                 int virtualX1 = Integer.parseInt(jTextFieldX1.getText());
                 int virtualY1 = Integer.parseInt(jTextFieldY1.getText());
@@ -1069,9 +1062,9 @@ public class MainFrame extends javax.swing.JFrame {
                 new Rectangle().draw(new Point(virtualX1, virtualY1), new Point(virtualX2, virtualY2), g2d);
                 jPanel2D.repaint();
             } else {
-                JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
+                JOptionPane.showMessageDialog(this, "Missing field(s). Please fill in all the fields and try again.");
             }
-        } else if (selectedItem.equals("Hình tròn")) {
+        } else if (selectedItem.equals("Circle")) {
             if (!lackInformationAboutCircle()) {
                 int virtualXC = Integer.parseInt(jTextFieldXC.getText());
                 int virtualYC = Integer.parseInt(jTextFieldYC.getText());
@@ -1079,9 +1072,9 @@ public class MainFrame extends javax.swing.JFrame {
                 new Circle().draw(virtualXC, virtualYC, virtualR, g2d);
                 jPanel2D.repaint();
             } else {
-                JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
+                JOptionPane.showMessageDialog(this, "Missing field(s). Please fill in all the fields and try again.");
             }
-        } else if (selectedItem.equals("Hình Ellipse")) {
+        } else if (selectedItem.equals("Ellipse")) {
             if (!lackInformationAboutEllipse()) {
                 int virtualXE = Integer.parseInt(jTextFieldXE.getText());
                 int virtualYE = Integer.parseInt(jTextFieldYE.getText());
@@ -1090,7 +1083,7 @@ public class MainFrame extends javax.swing.JFrame {
                 new Ellipse().draw(virtualXE, virtualYE, virtualA, virtualB, g2d);
                 jPanel2D.repaint();
             } else {
-                JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
+                JOptionPane.showMessageDialog(this, "Missing field(s). Please fill in all the fields and try again.");
             }
         }
     }//GEN-LAST:event_jButtonDrawActionPerformed
@@ -1112,9 +1105,9 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String selectedItem = (String) jComboBoxShape.getSelectedItem();
         CardLayout c = (CardLayout) jPanelCard.getLayout();
-        if (selectedItem.equals("Đoạn thẳng") || selectedItem.equals("Hình chữ nhật")) {
+        if (selectedItem.equals("Line") || selectedItem.equals("Rectangle")) {
             c.show(jPanelCard, "cardLineAndRect");
-        } else if (selectedItem.equals("Hình tròn")) {
+        } else if (selectedItem.equals("Circle")) {
             c.show(jPanelCard, "cardCircle");
         } else {
             c.show(jPanelCard, "cardEllipse");
@@ -1250,7 +1243,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
