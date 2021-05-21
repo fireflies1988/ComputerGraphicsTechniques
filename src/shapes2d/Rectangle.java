@@ -15,10 +15,10 @@ import ktdhcuoiky.MainFrame;
  *
  * @author COMPUTER
  */
-public class HinhChuNhat {
+public class Rectangle {
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
-    public HinhChuNhat() {
+    public Rectangle() {
     }
     
     public void draw(int virtualX, int virtualY, int virtualWidth, int virtualHeight, Graphics2D g2d) {
@@ -60,7 +60,7 @@ public class HinhChuNhat {
     
     // for rotating
     public void draw(Point virtualTL, Point virtualTR, Point virtualBL, Point virtualBR, Graphics2D g2d) {
-        DoanThang line = new DoanThang();
+        Line line = new Line();
         line.draw(virtualTL.x, virtualTL.y, virtualTR.x, virtualTR.y, g2d);
         line.draw(virtualTL.x, virtualTL.y, virtualBL.x, virtualBL.y, g2d);
         line.draw(virtualTR.x, virtualTR.y, virtualBR.x, virtualBR.y, g2d);

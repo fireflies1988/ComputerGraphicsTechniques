@@ -15,22 +15,22 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import ktdhcuoiky.MainFrame;
-import static ktdhcuoiky.MainFrame.maxX;
-import static ktdhcuoiky.MainFrame.maxY;
-import shapes2d.HinhChuNhat;
+import shapes2d.Rectangle;
+import static ktdhcuoiky.MainFrame.maxX1;
+import static ktdhcuoiky.MainFrame.maxY1;
 
 /**
  *
  * @author COMPUTER
  */
 public class Animation1 {
+    private final Point TL = new Point(-40, 40);
+    private final Point BR = new Point(40, -40);
     public Timer timer;
     private JPanel jPanel;
     private Graphics2D g2d;
-    private HinhChuNhat hcn;
+    private Rectangle hcn;
     private float angle = 10.0f;
-    private final Point TL = new Point(-40, 40);
-    private final Point BR = new Point(40, -40);
     private Random random = new Random();
     ArrayList<Point> r, s;
     
@@ -38,20 +38,20 @@ public class Animation1 {
         this.jPanel = jPanel;
         this.g2d = g2d;
         MainFrame.PIXEL_SIZE = 3;
-        hcn = new HinhChuNhat();
+        hcn = new Rectangle();
         timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                timer1ActionPerformed(e);
+                timerActionPerformed(e);
             }
         });
         timer.start();
     }
 
-    public void timer1ActionPerformed(ActionEvent e) {
+    public void timerActionPerformed(ActionEvent e) {
 //        g2d.setBackground(new Color(255, 255, 255, 0));
         g2d.setBackground(Color.BLACK);
-        g2d.clearRect(0, 0, maxX, maxY);
+        g2d.clearRect(0, 0, maxX1, maxY1);
         g2d.setColor(Color.GREEN);
         Point virtualTL = new Point(TL);
         Point virtualBR = new Point(BR);

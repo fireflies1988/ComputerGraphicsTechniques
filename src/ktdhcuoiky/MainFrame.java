@@ -6,6 +6,7 @@
 package ktdhcuoiky;
 
 import animation.Animation1;
+import animation.Animation2;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -14,10 +15,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
-import shapes2d.DoanThang;
-import shapes2d.HinhChuNhat;
-import shapes2d.HinhEllipse;
-import shapes2d.HinhTron;
+import shapes2d.Line;
+import shapes2d.Rectangle;
+import shapes2d.Ellipse;
+import shapes2d.Circle;
 
 /**
  *
@@ -26,25 +27,46 @@ import shapes2d.HinhTron;
 public class MainFrame extends javax.swing.JFrame {
     public final static int UNIT = 5;
     public static int PIXEL_SIZE = 5;
-    public static int maxX, maxY;  // 760 670 perfect
-    public static int midX, midY;
+    
+    // jPanel2D
+    public static int maxX1, maxY1;  // 760 670 perfect
+    public static int midX1, midY1;
     public BufferedImage offImage;
     public Graphics2D g2d;
+    
+    // jPanel3D
+    public static int maxX2, maxY2; 
+    public static int midX2, midY2;
+    
+    // Animation
     private Animation1 animation1;
+    private Animation2 animation2;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
         setLocationRelativeTo(null);
-        maxX = jPanel2D.getWidth();
-        maxY = jPanel2D.getHeight();
-        System.out.println(maxX + " " + maxY);
-        midX = maxX / 2;
-        midY = maxY / 2;
-        System.out.println(midX + " " + midY);
-        offImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
+        
+        // jPanel2D
+        System.out.println("2D");
+        maxX1 = jPanel2D.getWidth();
+        maxY1 = jPanel2D.getHeight();
+        System.out.println(maxX1 + " " + maxY1);
+        midX1 = maxX1 / 2;
+        midY1 = maxY1 / 2;
+        System.out.println(midX1 + " " + midY1);
+        offImage = new BufferedImage(maxX1, maxY1, BufferedImage.TYPE_INT_ARGB);
         g2d = offImage.createGraphics();
+        
+        // jPanel3D
+        System.out.println("3D");
+        maxX2 = jPanel3D.getWidth();
+        maxY2 = jPanel3D.getHeight();
+        System.out.println(maxX2 + " " + maxY2);
+        midX2 = maxX2 / 2;
+        midY2 = maxY2 / 2;
+        System.out.println(midX2 + " " + midY2);
     }
     
     /**
@@ -106,11 +128,12 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxCoordSystem = new javax.swing.JCheckBox();
         jLabel20 = new javax.swing.JLabel();
         jToggleButtonAnimation1 = new javax.swing.JToggleButton();
+        jToggleButtonAnimation2 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
-        jPanel2D2 = new javax.swing.JPanel() {
+        jPanel3D = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(offImage, 0, 0, null);
+                //        g.drawImage(offImage2, 0, 0, null);
             }
         };
         jPanel4 = new javax.swing.JPanel();
@@ -154,7 +177,6 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxGridMode1 = new javax.swing.JCheckBox();
         jCheckBoxCoordSystem1 = new javax.swing.JCheckBox();
         jLabel34 = new javax.swing.JLabel();
-        jToggleButtonAnimation2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -438,6 +460,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jToggleButtonAnimation2.setText("Animation 2");
+        jToggleButtonAnimation2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonAnimation2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -467,7 +496,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jToggleButtonAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButtonAnimation2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -495,7 +526,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButtonAnimation1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButtonAnimation2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -521,17 +554,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("2D", jPanel1);
 
-        jPanel2D2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2D2.setPreferredSize(new java.awt.Dimension(760, 2));
+        jPanel3D.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3D.setPreferredSize(new java.awt.Dimension(760, 2));
 
-        javax.swing.GroupLayout jPanel2D2Layout = new javax.swing.GroupLayout(jPanel2D2);
-        jPanel2D2.setLayout(jPanel2D2Layout);
-        jPanel2D2Layout.setHorizontalGroup(
-            jPanel2D2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel3DLayout = new javax.swing.GroupLayout(jPanel3D);
+        jPanel3D.setLayout(jPanel3DLayout);
+        jPanel3DLayout.setHorizontalGroup(
+            jPanel3DLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 758, Short.MAX_VALUE)
         );
-        jPanel2D2Layout.setVerticalGroup(
-            jPanel2D2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel3DLayout.setVerticalGroup(
+            jPanel3DLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -793,13 +826,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel34.setText("Animation");
 
-        jToggleButtonAnimation2.setText("Animation 1");
-        jToggleButtonAnimation2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonAnimation2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -827,10 +853,6 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jCheckBoxCoordSystem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jToggleButtonAnimation2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -855,9 +877,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jCheckBoxCoordSystem1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButtonAnimation2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -866,7 +886,7 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2D2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3D, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -877,7 +897,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2D2, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE))
+                    .addComponent(jPanel3D, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -918,17 +938,17 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Get real x from virtual coordinate system
     public static int getRealX(int virtualX) {
-        return midX + virtualX * UNIT;
+        return midX1 + virtualX * UNIT;
     }
     // Get real y from virtual coordinate system
     public static int getRealY(int virtualY) {
-        return midY - virtualY * UNIT;
+        return midY1 - virtualY * UNIT;
     }
     public static int getVirtualX(int realX) {
-        return Math.round((realX - midX) / (float) UNIT);
+        return Math.round((realX - midX1) / (float) UNIT);
     }
     public static int getVirtualY(int realY) {
-        return Math.round((midY - realY) / (float) UNIT);
+        return Math.round((midY1 - realY) / (float) UNIT);
     }
     public static int getRealWH(int virtualWH) {
         return virtualWH * UNIT;
@@ -951,41 +971,41 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void drawPixelGrid(Graphics2D g2d) {
         g2d.setColor(Color.LIGHT_GRAY);
-        for (int i = 5; i < maxX; i += UNIT) {
-            g2d.drawLine(i, 0, i, maxY);
+        for (int i = 5; i < maxX1; i += UNIT) {
+            g2d.drawLine(i, 0, i, maxY1);
         }
-        for (int i = 5; i < maxY; i += UNIT) {
-            g2d.drawLine(0, i, maxX, i);
+        for (int i = 5; i < maxY1; i += UNIT) {
+            g2d.drawLine(0, i, maxX1, i);
         }
     }
     public void drawCoordinateSystem(Graphics2D g2d) {
         g2d.setColor(Color.BLACK);
-        g2d.drawLine(0, midY, maxX, midY); // draw x axis
-        g2d.drawLine(midX, 0, midX, maxY); // draw y axis
+        g2d.drawLine(0, midY1, maxX1, midY1); // draw x axis
+        g2d.drawLine(midX1, 0, midX1, maxY1); // draw y axis
         g2d.setFont(new Font("Tahoma", Font.BOLD, 12));
-        g2d.drawString("X", maxX - 20, midY - 10);
-        g2d.drawString("Y", midX + 10, 20);
-        g2d.drawString("O", midX - 15, midY + 15);
+        g2d.drawString("X", maxX1 - 20, midY1 - 10);
+        g2d.drawString("Y", midX1 + 10, 20);
+        g2d.drawString("O", midX1 - 15, midY1 + 15);
 
 //        g2d.setFont(new Font("Tahoma", Font.PLAIN, 11));
 //        // danh so don vi 1, 2, 3, 4, 5... truc Ox
-//        for (int i = midX + UNIT; i < maxX; i += UNIT) {
-//            g2d.drawLine(i, midY - 2, i, midY + 2);
-//            g2d.drawString(String.valueOf((i - midX) / 30), i - 4, midY + 15);
+//        for (int i = midX1 + UNIT; i < maxX1; i += UNIT) {
+//            g2d.drawLine(i, midY1 - 2, i, midY1 + 2);
+//            g2d.drawString(String.valueOf((i - midX1) / 30), i - 4, midY1 + 15);
 //        }
-//        for (int i = midX - UNIT; i > 0; i -= UNIT) {
-//            g2d.drawLine(i, midY - 2, i, midY + 2);
-//            //            g.drawString(String.valueOf((i - midX) / 30), i - 4, midY + 15);
+//        for (int i = midX1 - UNIT; i > 0; i -= UNIT) {
+//            g2d.drawLine(i, midY1 - 2, i, midY1 + 2);
+//            //            g.drawString(String.valueOf((i - midX1) / 30), i - 4, midY1 + 15);
 //        }
 //
 //        // danh so don vi 1, 2, 3, 4, 5... truc Oy
-//        for (int i = midY - UNIT; i > 0; i -= UNIT) {
-//            g2d.drawLine(midX - 2, i, midX + 2, i);
-//            g2d.drawString(String.valueOf((midY - i) / 28), midX - 20, i + 4);
+//        for (int i = midY1 - UNIT; i > 0; i -= UNIT) {
+//            g2d.drawLine(midX1 - 2, i, midX1 + 2, i);
+//            g2d.drawString(String.valueOf((midY1 - i) / 28), midX1 - 20, i + 4);
 //        }
-//        for (int i = midY + UNIT; i < maxY; i += UNIT) {
-//            g2d.drawLine(midX - 2, i, midX + 2, i);
-//            //            g.drawString(String.valueOf((midY - i) / 30), midX - 20, i + 4);
+//        for (int i = midY1 + UNIT; i < maxY1; i += UNIT) {
+//            g2d.drawLine(midX1 - 2, i, midX1 + 2, i);
+//            //            g.drawString(String.valueOf((midY1 - i) / 30), midX1 - 20, i + 4);
 //        }
     }
     private void jCheckBoxGridModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxGridModeActionPerformed
@@ -994,7 +1014,7 @@ public class MainFrame extends javax.swing.JFrame {
             drawPixelGrid(g2d);
         } else {
             g2d.setBackground(new Color(255, 255, 255, 0));
-            g2d.clearRect(0, 0, maxX, maxY);
+            g2d.clearRect(0, 0, maxX1, maxY1);
             if (jCheckBoxCoordSystem.isSelected()) {
                 drawCoordinateSystem(g2d);
             }
@@ -1008,7 +1028,7 @@ public class MainFrame extends javax.swing.JFrame {
             drawCoordinateSystem(g2d);
         } else {
             g2d.setBackground(new Color(255, 255, 255, 0));
-            g2d.clearRect(0, 0, maxX, maxY);
+            g2d.clearRect(0, 0, maxX1, maxY1);
             if (jCheckBoxGridMode.isSelected()) {
                 drawPixelGrid(g2d);
             }
@@ -1026,7 +1046,7 @@ public class MainFrame extends javax.swing.JFrame {
                 int virtualY1 = Integer.parseInt(jTextFieldY1.getText());
                 int virtualX2 = Integer.parseInt(jTextFieldX2.getText());
                 int virtualY2 = Integer.parseInt(jTextFieldY2.getText());
-                new DoanThang().draw(virtualX1, virtualY1, virtualX2, virtualY2, g2d);
+                new Line().draw(virtualX1, virtualY1, virtualX2, virtualY2, g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
@@ -1037,7 +1057,7 @@ public class MainFrame extends javax.swing.JFrame {
                 int virtualY1 = Integer.parseInt(jTextFieldY1.getText());
                 int virtualX2 = Integer.parseInt(jTextFieldX2.getText());
                 int virtualY2 = Integer.parseInt(jTextFieldY2.getText());
-                new HinhChuNhat().draw(new Point(virtualX1, virtualY1), new Point(virtualX2, virtualY2), g2d);
+                new Rectangle().draw(new Point(virtualX1, virtualY1), new Point(virtualX2, virtualY2), g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
@@ -1047,7 +1067,7 @@ public class MainFrame extends javax.swing.JFrame {
                 int virtualXC = Integer.parseInt(jTextFieldXC.getText());
                 int virtualYC = Integer.parseInt(jTextFieldYC.getText());
                 int virtualR = Integer.parseInt(jTextFieldR.getText());
-                new HinhTron().draw(virtualXC, virtualYC, virtualR, g2d);
+                new Circle().draw(virtualXC, virtualYC, virtualR, g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
@@ -1058,7 +1078,7 @@ public class MainFrame extends javax.swing.JFrame {
                 int virtualYE = Integer.parseInt(jTextFieldYE.getText());
                 int virtualA = Integer.parseInt(jTextFieldA.getText());
                 int virtualB = Integer.parseInt(jTextFieldB.getText());
-                new HinhEllipse().draw(virtualXE, virtualYE, virtualA, virtualB, g2d);
+                new Ellipse().draw(virtualXE, virtualYE, virtualA, virtualB, g2d);
                 jPanel2D.repaint();
             } else {
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống tọa độ!");
@@ -1069,7 +1089,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         // TODO add your handling code here:
         g2d.setBackground(new Color(255, 255, 255, 0));
-        g2d.clearRect(0, 0, maxX, maxY);
+        g2d.clearRect(0, 0, maxX1, maxY1);
         if (jCheckBoxGridMode.isSelected()) {
             drawPixelGrid(g2d);
         }
@@ -1100,7 +1120,7 @@ public class MainFrame extends javax.swing.JFrame {
             animation1.timer.stop();
             MainFrame.PIXEL_SIZE = 5;
             g2d.setBackground(new Color(255, 255, 255, 0));
-            g2d.clearRect(0, 0, maxX, maxY);
+            g2d.clearRect(0, 0, maxX1, maxY1);
             jPanel2D.repaint();
         }
     }//GEN-LAST:event_jToggleButtonAnimation1ActionPerformed
@@ -1127,6 +1147,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jToggleButtonAnimation2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation2ActionPerformed
         // TODO add your handling code here:
+        if (jToggleButtonAnimation2.isSelected()) {
+            animation2 = new Animation2(jPanel2D, g2d);
+        } else {
+            animation2.timer.stop();
+            MainFrame.PIXEL_SIZE = 5;
+            g2d.setBackground(new Color(255, 255, 255, 0));
+            g2d.clearRect(0, 0, maxX1, maxY1);
+            jPanel2D.repaint();
+        }
     }//GEN-LAST:event_jToggleButtonAnimation2ActionPerformed
 
     /**
@@ -1218,9 +1247,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel2D;
-    private javax.swing.JPanel jPanel2D1;
-    private javax.swing.JPanel jPanel2D2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel3D;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelCard;
     private javax.swing.JPanel jPanelCard1;

@@ -5,8 +5,12 @@
         <group>
             <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/ktdhcuoiky/KTDHCuoiKy.java</file>
             <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/ktdhcuoiky/MainFrame.java</file>
+            <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/shapes2d/Circle.java</file>
+            <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/shapes2d/Line.java</file>
             <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/animation/Animation1.java</file>
-            <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/shapes2d/HinhChuNhat.java</file>
+            <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/shapes2d/Rectangle.java</file>
+            <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/animation/Animation2.java</file>
+            <file>file:/D:/Java/Ky%20thuat%20do%20hoa/KTDHCuoiKy/src/shapes2d/Ellipse.java</file>
         </group>
     </open-files>
 </project-private>

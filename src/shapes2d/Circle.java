@@ -5,19 +5,19 @@
  */
 package shapes2d;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import ktdhcuoiky.MainFrame;
 
 /**
  *
  * @author COMPUTER
  */
-public class HinhTron {
+public class Circle {
     private int x, y, r;
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
-    public HinhTron() {
+    public Circle() {
     }
     
     public void put8Pixels(int x, int y, int xC, int yC, Graphics2D g2d) {
@@ -57,5 +57,39 @@ public class HinhTron {
             }
             put8Pixels(x, y, xC, yC, g2d);
         }
+    }
+    
+    public void draw(Point virtualPt, int virtualR, Graphics2D g2d) {
+        draw(virtualPt.x, virtualPt.y, virtualR, g2d);
+    }
+    
+    
+    
+    
+    
+    public Point translate(Point virtualPt, int virtualDx, int virtualDy) {
+        return new Point(virtualPt.x + virtualDx, virtualPt.y + virtualDy);
+    }
+    
+    
+    
+    
+    
+    
+    public Point rotate(int virtualX, int virtualY, float angle) {
+        float cos = (float) Math.cos(Math.toRadians(angle));
+        float sin = (float) Math.sin(Math.toRadians(angle));
+        
+        Point virtualPt = new Point(virtualX, virtualY);
+        
+        int temp = virtualPt.x;
+        virtualPt.x = Math.round(virtualPt.x * cos - virtualPt.y * sin);
+        virtualPt.y = Math.round(temp * sin + virtualPt.y * cos);
+        
+        return virtualPt;
+    }
+    
+    public Point rotate(Point virtualPt, float angle) {
+        return rotate(virtualPt.x, virtualPt.y, angle);
     }
 }

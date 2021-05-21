@@ -12,7 +12,7 @@ import ktdhcuoiky.MainFrame;
  *
  * @author COMPUTER
  */
-public class HinhEllipse {
+public class Ellipse {
     private int x, y, a, b;
     private int offset = MainFrame.PIXEL_SIZE / 2;
     

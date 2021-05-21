@@ -15,11 +15,11 @@ import ktdhcuoiky.MainFrame;
  *
  * @author COMPUTER
  */
-public class DoanThang {
+public class Line {
     private int x1, y1, x2, y2;
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
-    public DoanThang() {
+    public Line() {
     }
     
     public void draw(int virtualX1, int virtualY1, int virtualX2, int virtualY2, Graphics2D g2d) {
@@ -93,20 +93,24 @@ public class DoanThang {
     
     
     
-    public ArrayList<Point> rotate(Point virtualPt1, Point virtualPt2, float angle) {
-        Point pt1 = new Point(virtualPt1);
-        Point pt2 = new Point(virtualPt2);
+    public ArrayList<Point> rotate(int virtualX1, int virtualY1, int virtualX2, int virtualY2, float angle) {
+        Point virtualPt1 = new Point(virtualX1, virtualY1);
+        Point virtaulPt2 = new Point(virtualX2, virtualY2);
         
         float cos = (float) Math.cos(Math.toRadians(angle));
         float sin = (float) Math.sin(Math.toRadians(angle));
         
-        int temp = pt1.x;
-        pt1.x = Math.round(pt1.x * cos - pt1.y * sin);
-        pt1.y = Math.round(temp * sin + pt1.y * cos);
-        temp = pt2.x;
-        pt2.x = Math.round(pt2.x * cos - pt2.y * sin);
-        pt2.y = Math.round(temp * sin + pt2.y * cos);
+        int temp = virtualPt1.x;
+        virtualPt1.x = Math.round(virtualPt1.x * cos - virtualPt1.y * sin);
+        virtualPt1.y = Math.round(temp * sin + virtualPt1.y * cos);
+        temp = virtaulPt2.x;
+        virtaulPt2.x = Math.round(virtaulPt2.x * cos - virtaulPt2.y * sin);
+        virtaulPt2.y = Math.round(temp * sin + virtaulPt2.y * cos);
         
-        return new ArrayList<>(Arrays.asList(pt1, pt2));
+        return new ArrayList<>(Arrays.asList(virtualPt1, virtaulPt2));
+    }
+    
+    public ArrayList<Point> rotate(Point virtualPt1, Point virtualPt2, float angle) {
+        return rotate(virtualPt1.x, virtualPt1.y, virtualPt2.x, virtualPt2.y, angle);
     }
 }
