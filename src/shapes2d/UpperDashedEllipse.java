@@ -13,18 +13,22 @@ import ktdhcuoiky.MainFrame;
  *
  * @author COMPUTER
  */
-public class Ellipse {
+public class UpperDashedEllipse {
     private int offset = MainFrame.PIXEL_SIZE / 2;
+    private int counter = 0;
     
-    public void put4Pixels(int x, int y, int xE, int yE, Graphics2D g2d) {
-        // goc phan tu I
-        g2d.fillRect(x + xE - offset, y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
-        // goc phan tu II
-        g2d.fillRect(-x + xE - offset, y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+    public void put2PixelsUpperHalf(int x, int y, int xE, int yE, Graphics2D g2d) {
         // goc phan tu IV
         g2d.fillRect(x + xE - offset, -y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
         // goc phan tu III
         g2d.fillRect(-x + xE - offset, -y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+    }
+    
+    public void put2PixelsLowerHalf(int x, int y, int xE, int yE, Graphics2D g2d) {
+        // goc phan tu I
+        g2d.fillRect(x + xE - offset, y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
+        // goc phan tu II
+        g2d.fillRect(-x + xE - offset, y + yE - offset, MainFrame.PIXEL_SIZE, MainFrame.PIXEL_SIZE);
     }
     
     public void draw(int virtualXE, int virtualYE, int virtualA, int virtualB, Graphics2D g2d) {
@@ -45,7 +49,8 @@ public class Ellipse {
         fx = 0; // fx = 2 * b2 * x, x = 0 => fx = 0
         fy = 2 * a2 * y; // fy = 2 * a2 * y
         
-        put4Pixels(x, y, xE, yE, g2d);
+        put2PixelsUpperHalf(x, y, xE, yE, g2d);
+        put2PixelsLowerHalf(x, y, xE, yE, g2d);
         
         // do doc tiep tuyen ellipse tai (x, y) bat ky: m = dy/dx = -fy/fx (diem nay phan chia 2 phan ellipse de ve)
         // ve phan I: m < -1 => fx < fy
@@ -65,7 +70,18 @@ public class Ellipse {
             }
             if (x % MainFrame.UNIT == 0) {
                 int tempY = MainFrame.roundXY(y);
-                put4Pixels(x, tempY, xE, yE, g2d);
+                if (counter < 4) {
+                    put2PixelsUpperHalf(x, tempY, xE, yE, g2d);
+                    put2PixelsLowerHalf(x, tempY, xE, yE, g2d);
+                    counter++;
+                } else if (counter < 7) {
+                    put2PixelsLowerHalf(x, tempY, xE, yE, g2d);
+                    counter++;
+                } else {
+                    put2PixelsUpperHalf(x, tempY, xE, yE, g2d);
+                    put2PixelsLowerHalf(x, tempY, xE, yE, g2d);
+                    counter = 0;
+                }
             }
         }
         
@@ -85,7 +101,18 @@ public class Ellipse {
             }   
             if (y % MainFrame.UNIT == 0) {
                 int tempX = MainFrame.roundXY(x);
-                put4Pixels(tempX, y, xE, yE, g2d);
+                if (counter < 4) {
+                    put2PixelsUpperHalf(tempX, y, xE, yE, g2d);
+                    put2PixelsLowerHalf(tempX, y, xE, yE, g2d);
+                    counter++;
+                } else if (counter < 7) {
+                    put2PixelsLowerHalf(tempX, y, xE, yE, g2d);
+                    counter++;
+                } else {
+                    put2PixelsUpperHalf(tempX, y, xE, yE, g2d);
+                    put2PixelsLowerHalf(tempX, y, xE, yE, g2d);
+                    counter = 0;
+                }
             }
         }
     }

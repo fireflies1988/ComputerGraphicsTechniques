@@ -24,6 +24,7 @@ import shapes2d.Line;
 import shapes2d.Rectangle;
 import shapes2d.Ellipse;
 import shapes2d.Circle;
+import shapes3d.Cylinder;
 import shapes3d.Sphere;
 
 /**
@@ -166,16 +167,16 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextFieldA1 = new javax.swing.JTextField();
-        jTextFieldXE1 = new javax.swing.JTextField();
+        jTextFieldRCyl = new javax.swing.JTextField();
+        jTextFieldXCyl = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        jTextFieldYE1 = new javax.swing.JTextField();
+        jTextFieldYCyl = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        jTextFieldA2 = new javax.swing.JTextField();
+        jTextFieldCylHeight = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jTextFieldYE2 = new javax.swing.JTextField();
+        jTextFieldZCyl = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jButtonDraw3D = new javax.swing.JButton();
         jButtonClear3D = new javax.swing.JButton();
@@ -659,7 +660,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelCard3D.add(jPanelSphereCard, "cardSphere");
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel26.setText("Bottom center coordinate");
+        jLabel26.setText("Bottom center point");
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("r");
@@ -698,23 +699,23 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(jPanelCylinderCardLayout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldXE1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldXCyl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelCylinderCardLayout.createSequentialGroup()
                         .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldYE1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldYCyl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelCylinderCardLayout.createSequentialGroup()
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldA1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldRCyl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelCylinderCardLayout.createSequentialGroup()
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldA2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldCylHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelCylinderCardLayout.createSequentialGroup()
                         .addComponent(jLabel31)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldYE2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldZCyl, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanelCylinderCardLayout.setVerticalGroup(
@@ -724,27 +725,27 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCylinderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jTextFieldXE1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldXCyl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCylinderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
-                    .addComponent(jTextFieldYE1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldYCyl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCylinderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(jTextFieldYE2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldZCyl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel30)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCylinderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(jTextFieldA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldRCyl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel33)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCylinderCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(jTextFieldA2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCylHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 51, Short.MAX_VALUE))
         );
 
@@ -870,6 +871,15 @@ public class MainFrame extends javax.swing.JFrame {
         String rS = jTextFieldRS.getText();
         return xS.equals("") || yS.equals("") || zS.equals("") || rS.equals("");
     }
+    public boolean lackInformationAboutCylinder() {
+        String xCyl = jTextFieldXCyl.getText();
+        String yCyl = jTextFieldXCyl.getText();
+        String zCyl = jTextFieldXCyl.getText();
+        String rCyl = jTextFieldXCyl.getText();
+        String cylHeight = jTextFieldCylHeight.getText();
+        return xCyl.equals("") || yCyl.equals("") || zCyl.equals("") || rCyl.equals("") || cylHeight.equals("");
+    }
+    
     // Get real x from virtual coordinate system
     public static int getRealX(int virtualX) {
         return midX1 + virtualX * UNIT;
@@ -1109,6 +1119,18 @@ public class MainFrame extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Missing field(s). Please fill in all the fields and try again.");
             }
+        } else {
+            if (!lackInformationAboutCylinder()) {
+                int virtualXCyl = Integer.parseInt(jTextFieldXCyl.getText());
+                int virtualYCyl = Integer.parseInt(jTextFieldYCyl.getText());
+                int virtualZCyl = Integer.parseInt(jTextFieldZCyl.getText());
+                int virtualRCyl = Integer.parseInt(jTextFieldRCyl.getText());
+                int CylHeight = Integer.parseInt(jTextFieldCylHeight.getText());
+                new Cylinder().draw(virtualXCyl, virtualYCyl, virtualZCyl, virtualRCyl, CylHeight, g3d);
+                jPanel3D.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "Missing field(s). Please fill in all the fields and try again.");
+            }
         }
     }//GEN-LAST:event_jButtonDraw3DActionPerformed
 
@@ -1232,24 +1254,24 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSphereCard;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldA;
-    private javax.swing.JTextField jTextFieldA1;
-    private javax.swing.JTextField jTextFieldA2;
     private javax.swing.JTextField jTextFieldB;
+    private javax.swing.JTextField jTextFieldCylHeight;
     private javax.swing.JTextField jTextFieldR;
+    private javax.swing.JTextField jTextFieldRCyl;
     private javax.swing.JTextField jTextFieldRS;
     private javax.swing.JTextField jTextFieldX1;
     private javax.swing.JTextField jTextFieldX2;
     private javax.swing.JTextField jTextFieldXC;
+    private javax.swing.JTextField jTextFieldXCyl;
     private javax.swing.JTextField jTextFieldXE;
-    private javax.swing.JTextField jTextFieldXE1;
     private javax.swing.JTextField jTextFieldXS;
     private javax.swing.JTextField jTextFieldY1;
     private javax.swing.JTextField jTextFieldY2;
     private javax.swing.JTextField jTextFieldYC;
+    private javax.swing.JTextField jTextFieldYCyl;
     private javax.swing.JTextField jTextFieldYE;
-    private javax.swing.JTextField jTextFieldYE1;
-    private javax.swing.JTextField jTextFieldYE2;
     private javax.swing.JTextField jTextFieldYS;
+    private javax.swing.JTextField jTextFieldZCyl;
     private javax.swing.JTextField jTextFieldZS;
     private javax.swing.JToggleButton jToggleButtonAnimation1;
     private javax.swing.JToggleButton jToggleButtonAnimation2;

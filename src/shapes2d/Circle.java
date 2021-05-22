@@ -14,7 +14,6 @@ import ktdhcuoiky.MainFrame;
  * @author COMPUTER
  */
 public class Circle {
-    private int x, y, r;
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
     public Circle() {

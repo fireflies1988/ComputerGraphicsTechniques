@@ -16,7 +16,6 @@ import ktdhcuoiky.MainFrame;
  * @author COMPUTER
  */
 public class Line {
-    private int x1, y1, x2, y2;
     private int offset = MainFrame.PIXEL_SIZE / 2;
 
     public Line() {

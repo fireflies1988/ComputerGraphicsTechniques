@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import ktdhcuoiky.MainFrame;
 import shapes2d.Circle;
-import shapes2d.Ellipse;
+import shapes2d.UpperDashedEllipse;
 
 /**
  *
@@ -22,14 +22,12 @@ public class Sphere {
         // convert 3D cooridnate to 2D coordinate using cabinet projection
         Point virtualPt = MainFrame.cabinet(virtualX, virtualY, virtualZ);
         
-        // Circle
-        Circle circle = new Circle();
-        circle.draw(virtualPt, virtualR, g3d);
+        // Draw circle
+        new Circle().draw(virtualPt, virtualR, g3d);
         
-        // Ellipse inside circle
+        // Draw ellipse inside circle
         int virtualA = virtualR;
         int virtualB = MainFrame.cabinetDepth(virtualR);
-        Ellipse ellipse = new Ellipse();
-        ellipse.draw(virtualPt, virtualA, virtualB, g3d);
+        new UpperDashedEllipse().draw(virtualPt, virtualA, virtualB, g3d);
     }
 }
