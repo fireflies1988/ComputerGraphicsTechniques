@@ -67,6 +67,9 @@ public class Circle {
     
     
     
+    public Point translate(int virtualX, int virtualY, int virtualDx, int virtualDy) {
+        return new Point(virtualX + virtualDx, virtualY + virtualDy);
+    }
     public Point translate(Point virtualPt, int virtualDx, int virtualDy) {
         return new Point(virtualPt.x + virtualDx, virtualPt.y + virtualDy);
     }

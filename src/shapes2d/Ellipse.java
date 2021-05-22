@@ -6,6 +6,7 @@
 package shapes2d;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import ktdhcuoiky.MainFrame;
 
 /**
@@ -88,5 +89,9 @@ public class Ellipse {
                 put4Pixels(tempX, y, xE, yE, g2d);
             }
         }
+    }
+    
+    public void draw(Point virtualPt, int virtualA, int virtualB, Graphics2D g2d) {
+        draw(virtualPt.x, virtualPt.y, virtualA, virtualB, g2d);
     }
 }

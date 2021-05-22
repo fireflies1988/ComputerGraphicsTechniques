@@ -39,8 +39,8 @@ public class Animation2 {
     private float angle = 0.0f;
     private Line line;
     private Circle circle;
-    private ArrayList<Point> rl;
-    private Point rc1, rc2;
+    private ArrayList<Point> rl, tl;
+    private Point rc1, rc2, tc;
     public Clip clip;
     
     public Animation2(JPanel jPanel, Graphics2D g2d) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -91,14 +91,20 @@ public class Animation2 {
             if (angle < 360 * 2) {
                 rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i * sin);
                 rl = line.rotate(rl.get(0), rl.get(1), angle);
+//                tl = line.translate(rl.get(0), rl.get(1), 0, Math.round(20 * sin));
+//                tl = line.translate(rl.get(0), rl.get(1), Math.round(20 * sin), 0);
                 line.draw(rl.get(0), rl.get(1), g2d);
 
                 rc1 = circle.rotate(Math.round(pt1.x * sin), pt1.y, i * sin);
                 rc1 = circle.rotate(rc1, angle);
+//                tc = circle.translate(rc1, 0, Math.round(20 * sin));
+//                tc = circle.translate(rc1, Math.round(20 * sin), 0);
                 circle.draw(rc1, 1, g2d);
 
                 rc2 = circle.rotate(pt2.x, pt2.y, i * sin);
                 rc2 = circle.rotate(rc2, angle);
+//                tc = circle.translate(rc2, 0, Math.round(20 * sin));
+//                tc = circle.translate(rc2, Math.round(20 * sin), 0);
                 circle.draw(rc2, 2, g2d);
             } else if (angle < 360 * 4) {
                 rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i);

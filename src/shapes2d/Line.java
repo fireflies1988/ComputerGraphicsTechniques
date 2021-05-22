@@ -78,16 +78,22 @@ public class Line {
     
     
     
+    
+    
+    public ArrayList<Point> translate(int virtualX1, int virtualY1, int virtualX2, int virtualY2, int virtualDx, int virtualDy) {
+        Point virtualPt1 = new Point(virtualX1, virtualY1);
+        Point virtualPt2 = new Point(virtualX2, virtualY2);
+        
+        virtualPt1.x += virtualDx;
+        virtualPt1.y += virtualDy;
+        virtualPt2.x += virtualDx;
+        virtualPt2.y += virtualDy;
+        
+        return new ArrayList<>(Arrays.asList(virtualPt1, virtualPt2));
+    }
+    
     public ArrayList<Point> translate(Point virtualPt1, Point virtualPt2, int virtualDx, int virtualDy) {
-        Point pt1 = new Point(virtualPt1);
-        Point pt2 = new Point(virtualPt2);
-        
-        pt1.x += virtualDx;
-        pt1.y += virtualDy;
-        pt2.x += virtualDx;
-        pt2.y += virtualDy;
-        
-        return new ArrayList<>(Arrays.asList(pt1, pt2));
+        return translate(virtualPt1.x, virtualPt1.y, virtualPt2.x, virtualPt2.y, virtualDx, virtualDy);
     }
     
     
