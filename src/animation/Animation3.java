@@ -29,17 +29,15 @@ import shapes2d.Line;
  *
  * @author COMPUTER
  */
-public class Animation3 {
-    private JPanel jPanel;
-    private Graphics2D g2d;
-    public Timer timer;
-    private Random random = new Random();
+public class Animation3 extends Animation {
     private Drop d[] = new Drop[120];
-    public Clip clip;
     
     public Animation3(JPanel jPanel, Graphics2D g2d) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        this.jPanel = jPanel;
-        this.g2d = g2d;
+        super(jPanel, g2d);
+        random = new Random();
+        line = new Line();
+        ellipse = new Ellipse();
+        
         for (int i = 0; i < d.length; i++) {
             d[i] = new Drop();
         }
@@ -97,11 +95,11 @@ public class Animation3 {
         }
         public void display() {
             g2d.setColor(Color.WHITE);
-            new Line().draw(virtualX, virtualY, virtualX, virtualY + length, width, g2d);
+            line.draw(virtualX, virtualY, virtualX, virtualY + length, width, g2d);
             update();
         }
         public void touchGround() {
-            new Ellipse().draw(virtualX, virtualY, ellipseX, ellipseY, g2d);
+            ellipse.draw(virtualX, virtualY, ellipseX, ellipseY, g2d);
             ellipseX += virtualSpeed / 2;
             ellipseY += virtualSpeed / 2 - 1;
             if (ellipseX > 9) {

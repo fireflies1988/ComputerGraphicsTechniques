@@ -13,8 +13,7 @@ import computergraphicstechniques.MainFrame;
  *
  * @author COMPUTER
  */
-public class UpperDashedEllipse {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
+public class UpperDashedEllipse extends Shape {
     private int counter = 0;
     
     public void put2PixelsUpperHalf(int x, int y, int xE, int yE, Graphics2D g2d) {

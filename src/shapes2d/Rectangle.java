@@ -15,11 +15,7 @@ import computergraphicstechniques.MainFrame;
  *
  * @author COMPUTER
  */
-public class Rectangle {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
-
-    public Rectangle() {
-    }
+public class Rectangle extends Shape {
     
     public void draw(int virtualX, int virtualY, int virtualWidth, int virtualHeight, Graphics2D g2d) {
         int realX = MainFrame.getRealX(virtualX);

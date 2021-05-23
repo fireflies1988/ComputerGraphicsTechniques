@@ -13,8 +13,7 @@ import computergraphicstechniques.MainFrame;
  *
  * @author COMPUTER
  */
-public class Ellipse {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
+public class Ellipse extends Shape {
     
     public void put4Pixels(int x, int y, int xE, int yE, Graphics2D g2d) {
         // goc phan tu I

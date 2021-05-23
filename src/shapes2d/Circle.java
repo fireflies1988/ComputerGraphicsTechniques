@@ -13,11 +13,7 @@ import computergraphicstechniques.MainFrame;
  *
  * @author COMPUTER
  */
-public class Circle {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
-
-    public Circle() {
-    }
+public class Circle extends Shape {
     
     public void put8Pixels(int x, int y, int xC, int yC, Graphics2D g2d) {
         // goc phan tu I
@@ -44,7 +40,6 @@ public class Circle {
         int x = 0, y = r;
         int f = 1 - r; // f = 5/4 - r vi 5/4 = 1
 
-        int count = 0;
         put8Pixels(x, y, xC, yC, g2d); // putpixel va tinh tien hinh tron tai (0, 0) sang (xC, yC) 
 
         while (x < y) {

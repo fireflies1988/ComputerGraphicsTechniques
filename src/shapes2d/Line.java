@@ -15,8 +15,7 @@ import computergraphicstechniques.MainFrame;
  *
  * @author COMPUTER
  */
-public class Line {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
+public class Line extends Shape {
     
     public void draw(int virtualX1, int virtualY1, int virtualX2, int virtualY2, Graphics2D g2d) {
         // convert virtualX, virtualY to realX, realY

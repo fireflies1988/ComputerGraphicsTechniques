@@ -30,21 +30,14 @@ import static computergraphicstechniques.MainFrame.maxY1;
  *
  * @author COMPUTER
  */
-public class Animation1 {
+public class Animation1 extends Animation {
     private final Point TL = new Point(-40, 40);
     private final Point BR = new Point(40, -40);
-    private JPanel jPanel;
-    private Graphics2D g2d;
-    public Timer timer;
-    private Rectangle rect;
-    ArrayList<Point> r, s;
     private float angle = 10.0f;
-    private Random random = new Random();
-    public Clip clip;
+    ArrayList<Point> r, s;
     
     public Animation1(JPanel jPanel, Graphics2D g2d) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        this.jPanel = jPanel;
-        this.g2d = g2d;
+        super(jPanel, g2d);
         MainFrame.PIXEL_SIZE = 3;
         
         File file = new File("src/audio/Universal - Vibe Tracks.wav");

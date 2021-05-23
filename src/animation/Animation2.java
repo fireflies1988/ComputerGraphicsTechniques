@@ -30,22 +30,15 @@ import shapes2d.Line;
  *
  * @author COMPUTER
  */
-public class Animation2 {
+public class Animation2 extends Animation {
     private final Point pt1 = new Point(45, 0);
     private final Point pt2 = new Point(0, 45);
-    private JPanel jPanel;
-    private Graphics2D g2d;
-    public Timer timer;
     private float angle = 0.0f;
-    private Line line;
-    private Circle circle;
     private ArrayList<Point> rl, tl;
     private Point rc1, rc2, tc;
-    public Clip clip;
     
     public Animation2(JPanel jPanel, Graphics2D g2d) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        this.jPanel = jPanel;
-        this.g2d = g2d;
+        super(jPanel, g2d);
         MainFrame.PIXEL_SIZE = 3;
         
         File file = new File("src/audio/Invisible - Vibe Tracks.wav");
@@ -73,7 +66,6 @@ public class Animation2 {
         g2d.setColor(Color.GREEN);
         float sin = (float) (Math.sin(Math.toRadians(angle)));
         for (float i = 0; i < 360; i += 10) {
-
 //            if (angle < 360) {
 //                rl = line.rotate(Math.round(pt1.x * sin), 0, pt2.x, 0, i);
 //                System.out.println(rl);
