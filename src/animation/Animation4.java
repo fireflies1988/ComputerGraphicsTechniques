@@ -69,7 +69,8 @@ public class Animation4 extends Animation {
         System.out.println(radian);
         if (radian > Math.PI * 2 * d) {
             radian = 0;
-            g2d.clearRect(0, 0, maxX1, maxY1);
+            g2d.setColor(Color.BLACK);
+            g2d.fillRect(0, 0, maxX1, maxY1);
             g2d.setColor(Color.WHITE);
             n++;
             if (n > 7) {
