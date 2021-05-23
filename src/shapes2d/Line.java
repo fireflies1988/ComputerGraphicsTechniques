@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
-import ktdhcuoiky.MainFrame;
+import computergraphicstechniques.MainFrame;
 
 /**
  *
@@ -17,9 +17,6 @@ import ktdhcuoiky.MainFrame;
  */
 public class Line {
     private int offset = MainFrame.PIXEL_SIZE / 2;
-
-    public Line() {
-    }
     
     public void draw(int virtualX1, int virtualY1, int virtualX2, int virtualY2, Graphics2D g2d) {
         // convert virtualX, virtualY to realX, realY
@@ -74,6 +71,56 @@ public class Line {
         draw(virtualPt1.x, virtualPt1.y, virtualPt2.x, virtualPt2.y, g2d);
     }
     
+    public void draw(int virtualX1, int virtualY1, int virtualX2, int virtualY2, int pixelSize, Graphics2D g2d) {
+        int offset = pixelSize / 2;
+        
+        // convert virtualX, virtualY to realX, realY
+        int x1 = MainFrame.getRealX(virtualX1);
+        int y1 = MainFrame.getRealY(virtualY1);
+        int x2 = MainFrame.getRealX(virtualX2);
+        int y2 = MainFrame.getRealY(virtualY2);
+        
+        // Bresenham
+        int Dx, Dy, p, x, y;
+        Dx = Math.abs(x2 - x1);
+        Dy = Math.abs(y2 - y1);
+           
+        x = x1;
+        y = y1;
+
+        int xUnit = MainFrame.UNIT, yUnit = MainFrame.UNIT;
+        if (x1 > x2) {
+            xUnit = -xUnit;
+        }
+        if (y1 > y2) {
+            yUnit = -yUnit;
+        }
+        
+        g2d.fillRect(x - offset, y - offset, pixelSize, pixelSize);  
+        if (Dx >= Dy) {
+            p = 2 * Dy - Dx;
+            while (x != x2) {
+                if (p < 0) p += 2 * Dy;
+                else {
+                    p += 2 * (Dy - Dx);
+                    y += yUnit;
+                }
+                x += xUnit;
+                g2d.fillRect(x - offset, y - offset, pixelSize, pixelSize);  
+            }
+        } else {
+            p = 2 * Dx - Dy;
+            while (y != y2) {
+                if (p < 0) p += 2 * Dx;
+                else {
+                    p += 2 * (Dx - Dy);
+                    x += xUnit;
+                }
+                y += yUnit;
+                g2d.fillRect(x - offset, y - offset, pixelSize, pixelSize);  
+            }
+        }
+    }
     
     
     

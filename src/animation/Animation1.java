@@ -21,10 +21,10 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import ktdhcuoiky.MainFrame;
+import computergraphicstechniques.MainFrame;
 import shapes2d.Rectangle;
-import static ktdhcuoiky.MainFrame.maxX1;
-import static ktdhcuoiky.MainFrame.maxY1;
+import static computergraphicstechniques.MainFrame.maxX1;
+import static computergraphicstechniques.MainFrame.maxY1;
 
 /**
  *
@@ -36,7 +36,7 @@ public class Animation1 {
     private JPanel jPanel;
     private Graphics2D g2d;
     public Timer timer;
-    private Rectangle hcn;
+    private Rectangle rect;
     ArrayList<Point> r, s;
     private float angle = 10.0f;
     private Random random = new Random();
@@ -54,7 +54,7 @@ public class Animation1 {
         clip.start();
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         
-        hcn = new Rectangle();
+        rect = new Rectangle();
         
         timer = new Timer(20, new ActionListener() {
             @Override
@@ -74,9 +74,10 @@ public class Animation1 {
         Point virtualBR = new Point(BR);
         for (int i = 1; i < 24; i++) {
 //            g2d.setColor(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
-            r = hcn.rotate(virtualTL, virtualBR, i * angle);
-            hcn.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
-            s = hcn.scale(virtualTL, virtualBR, 0.92f, 0.92f);
+            r = rect.rotate(virtualTL, virtualBR, i * angle);
+            rect.draw(r.get(0), r.get(1), r.get(2), r.get(3), g2d);
+            s = rect.scale(virtualTL, virtualBR, 0.92f, 0.92f);
+            System.out.println(s);
             virtualTL = s.get(0);
             virtualBR = s.get(1);
         }

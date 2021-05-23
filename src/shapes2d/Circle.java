@@ -7,7 +7,7 @@ package shapes2d;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import ktdhcuoiky.MainFrame;
+import computergraphicstechniques.MainFrame;
 
 /**
  *
@@ -72,6 +72,10 @@ public class Circle {
     public Point translate(Point virtualPt, int virtualDx, int virtualDy) {
         return new Point(virtualPt.x + virtualDx, virtualPt.y + virtualDy);
     }
+    
+    
+    
+    
     
     
     

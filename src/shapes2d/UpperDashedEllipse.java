@@ -7,7 +7,7 @@ package shapes2d;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import ktdhcuoiky.MainFrame;
+import computergraphicstechniques.MainFrame;
 
 /**
  *

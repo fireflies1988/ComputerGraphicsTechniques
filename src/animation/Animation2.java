@@ -20,9 +20,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import ktdhcuoiky.MainFrame;
-import static ktdhcuoiky.MainFrame.maxX1;
-import static ktdhcuoiky.MainFrame.maxY1;
+import computergraphicstechniques.MainFrame;
+import static computergraphicstechniques.MainFrame.maxX1;
+import static computergraphicstechniques.MainFrame.maxY1;
 import shapes2d.Circle;
 import shapes2d.Line;
 

@@ -7,7 +7,7 @@ package shapes3d;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import ktdhcuoiky.MainFrame;
+import computergraphicstechniques.MainFrame;
 import shapes2d.Circle;
 import shapes2d.UpperDashedEllipse;
 

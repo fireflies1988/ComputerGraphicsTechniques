@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
-import ktdhcuoiky.MainFrame;
+import computergraphicstechniques.MainFrame;
 
 /**
  *
@@ -72,14 +72,27 @@ public class Rectangle {
     
     
     // return new virtual coordinates of top left and bottom right points after scaling
+    // used for zoom out, not good for zoom in
     public ArrayList<Point> scale(Point virtualTL, Point virtualBR, float scaleX, float scaleY) {
         Point tl = new Point(virtualTL);
         Point br = new Point(virtualBR);
         
-        tl.x = (int) (tl.x * scaleX);
+        tl.x = (int) (tl.x * scaleX);  // type cast must be int, NOT Math.round
         tl.y = (int) (tl.y * scaleY);
         br.x = (int) (br.x * scaleX);
         br.y = (int) (br.y * scaleY);
+        return new ArrayList<>(Arrays.asList(tl, br));
+    }
+    
+    // used for zoom in
+    public ArrayList<Point> scaleInc(Point virtualTL, Point virtualBR, float scaleX, float scaleY) {
+        Point tl = new Point(virtualTL);
+        Point br = new Point(virtualBR);
+        
+        tl.x = Math.round(tl.x * scaleX); 
+        tl.y = Math.round(tl.y * scaleY);
+        br.x = Math.round(br.x * scaleX);
+        br.y = Math.round(br.y * scaleY);
         return new ArrayList<>(Arrays.asList(tl, br));
     }
     
@@ -88,7 +101,26 @@ public class Rectangle {
         Point virtualTL = new Point(virtualX, virtualY);
         Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
         return scale(virtualTL, virtualBR, scaleX, scaleY);
-    }    
+    }
+    
+    // for rotating
+    public ArrayList<Point> scale(Point virtualTL, Point virtualTR, Point virtualBL, Point virtualBR, float scaleX, float scaleY) {
+        Point tl = new Point(virtualTL);
+        Point tr = new Point(virtualTR);
+        Point bl = new Point(virtualBL);
+        Point br = new Point(virtualBR);
+        
+        // type cast must be int, NOT Math.round (I got a problem here)
+        tl.x = (int) (tl.x * scaleX);  
+        tl.y = (int) (tl.y * scaleY);
+        tr.x = (int) (tr.x * scaleX);  
+        tr.y = (int) (tr.y * scaleY);
+        bl.x = (int) (bl.x * scaleX);
+        bl.y = (int) (bl.y * scaleY);
+        br.x = (int) (br.x * scaleX);
+        br.y = (int) (br.y * scaleY);
+        return new ArrayList<>(Arrays.asList(tl, tr, bl, br));
+    }
     
 
     
