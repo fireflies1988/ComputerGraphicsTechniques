@@ -16,7 +16,6 @@ import computergraphicstechniques.MainFrame;
  * @author COMPUTER
  */
 public class Rectangle extends Shape {
-    
     public void draw(int virtualX, int virtualY, int virtualWidth, int virtualHeight, Graphics2D g2d) {
         int realX = MainFrame.getRealX(virtualX);
         int realY = MainFrame.getRealY(virtualY);
@@ -134,6 +133,23 @@ public class Rectangle extends Shape {
         return new ArrayList<>(Arrays.asList(tl, br));
     }
     
+    public ArrayList<Point> translate(Point virtualTL, Point virtualTR, Point virtualBL, Point virtualBR, int virtualDx, int virtualDy) {
+        Point tl = new Point(virtualTL);
+        Point tr = new Point(virtualTR);
+        Point bl = new Point(virtualBL);
+        Point br = new Point(virtualBR);
+        
+        tl.x += virtualDx;
+        tl.y += virtualDy;
+        tr.x += virtualDx;
+        tr.y += virtualDy;
+        bl.x += virtualDx;
+        bl.y += virtualDy;
+        br.x += virtualDx;
+        br.y += virtualDy;
+        return new ArrayList<>(Arrays.asList(tl, tr, bl, br));
+    }
+    
     public ArrayList<Point> translate(int virtualX, int virtualY, int virtualWidth, int virtualHeight, int virtualDx, int virtualDy) {
         Point virtualTL = new Point(virtualX, virtualY);
         Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
@@ -199,5 +215,26 @@ public class Rectangle extends Shape {
     
     public Point getCenterPoint(Point virtualTL, Point virtualBR) {
         return new Point(Math.round((virtualTL.x + virtualBR.x) / 2.0f), Math.round((virtualTL.y + virtualBR.y) / 2.0f));
+    }
+    
+    
+    
+    
+    public ArrayList<Point> shear(Point virtualTL, Point virtualTR, Point virtualBL, Point virtualBR, float shearX, float shearY) {
+        Point tl = new Point(virtualTL);
+        Point tr = new Point(virtualTR);
+        Point bl = new Point(virtualBL);
+        Point br = new Point(virtualBR);
+        
+        tl.x += Math.round(shearX * tl.y);
+        tl.y += Math.round(shearY * tl.x);
+        tr.x += Math.round(shearX * tr.y);
+        tr.y += Math.round(shearY * tr.x);
+        bl.x += Math.round(shearX * bl.y);
+        bl.y += Math.round(shearY * bl.x);
+        br.x += Math.round(shearX * br.y);
+        br.y += Math.round(shearY * br.x);
+        
+        return new ArrayList<Point>(Arrays.asList(tl, tr, bl, br));
     }
 }

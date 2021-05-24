@@ -49,7 +49,7 @@ public class Animation3 extends Animation {
         clip.start();
         clip.loop(Clip.LOOP_CONTINUOUSLY);
         
-        timer = new Timer(40, new ActionListener() {
+        timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 timerActionPerformed(e);
@@ -73,7 +73,7 @@ public class Animation3 extends Animation {
     
     public class Drop {
         public int virtualX, virtualY;
-        public float virtualSpeed;
+        public float virtualYSpeed;
         public int ellipseX, ellipseY, endPosition;
         public int width, length;
         public Drop() {
@@ -82,7 +82,7 @@ public class Animation3 extends Animation {
         public void init() {
             virtualX = random.nextInt(90 * 2) - 90;
             virtualY = random.nextInt(80) + 80;
-            virtualSpeed = random.nextInt(8) + 1;
+            virtualYSpeed = random.nextInt(8) + 1;
             length = random.nextInt(6) + 2;
             width = random.nextInt(5) + 1;
             ellipseX = 0;
@@ -90,8 +90,8 @@ public class Animation3 extends Animation {
             endPosition = MainFrame.getVirtualY(MainFrame.maxY1) + random.nextInt(40);
         }
         public void update() {
-            virtualY -= virtualSpeed;
-            virtualSpeed += 0.1f;
+            virtualY -= virtualYSpeed;
+            virtualYSpeed += 0.1f;
         }
         public void display() {
             g2d.setColor(Color.WHITE);
@@ -100,8 +100,8 @@ public class Animation3 extends Animation {
         }
         public void touchGround() {
             ellipse.draw(virtualX, virtualY, ellipseX, ellipseY, g2d);
-            ellipseX += virtualSpeed / 2;
-            ellipseY += virtualSpeed / 2 - 1;
+            ellipseX += virtualYSpeed / 2;
+            ellipseY += virtualYSpeed / 2 - 1;
             if (ellipseX > 9) {
                 init();
             }

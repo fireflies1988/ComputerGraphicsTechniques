@@ -71,7 +71,6 @@ public class Animation4 extends Animation {
             radian = 0;
             g2d.setColor(Color.BLACK);
             g2d.fillRect(0, 0, maxX1, maxY1);
-            g2d.setColor(Color.WHITE);
             n++;
             if (n > 7) {
                 n = 1;

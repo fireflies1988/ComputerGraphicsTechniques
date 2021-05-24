@@ -9,6 +9,7 @@ import animation.Animation1;
 import animation.Animation2;
 import animation.Animation3;
 import animation.Animation4;
+import animation.Animation5;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -54,6 +55,7 @@ public class MainFrame extends javax.swing.JFrame {
     private Animation2 animation2;
     private Animation3 animation3;
     private Animation4 animation4;
+    private Animation5 animation5;
     /**
      * Creates new form MainFrame
      */
@@ -149,6 +151,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToggleButtonAnimation2 = new javax.swing.JToggleButton();
         jToggleButtonAnimation3 = new javax.swing.JToggleButton();
         jToggleButtonAnimation4 = new javax.swing.JToggleButton();
+        jToggleButtonAnimation5 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3D = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
@@ -494,6 +497,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jToggleButtonAnimation5.setText("Animation 5");
+        jToggleButtonAnimation5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonAnimation5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -524,6 +534,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButtonAnimation5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonAnimation4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonAnimation3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonAnimation2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -561,7 +572,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jToggleButtonAnimation3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButtonAnimation4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButtonAnimation5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1224,6 +1237,24 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButtonAnimation4ActionPerformed
 
+    private void jToggleButtonAnimation5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation5ActionPerformed
+        // TODO add your handling code here:
+        if (jToggleButtonAnimation5.isSelected()) {
+            try {
+                animation5 = new Animation5(jPanel2D, g2d);
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            animation5.timer.stop();
+            animation5.clip.stop();
+            MainFrame.PIXEL_SIZE = 5;
+            g2d.setBackground(new Color(255, 255, 255, 0));
+            g2d.clearRect(0, 0, maxX1, maxY1);
+            jPanel2D.repaint();
+        }
+    }//GEN-LAST:event_jToggleButtonAnimation5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1342,5 +1373,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButtonAnimation2;
     private javax.swing.JToggleButton jToggleButtonAnimation3;
     private javax.swing.JToggleButton jToggleButtonAnimation4;
+    private javax.swing.JToggleButton jToggleButtonAnimation5;
     // End of variables declaration//GEN-END:variables
 }
