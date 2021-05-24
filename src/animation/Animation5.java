@@ -102,14 +102,35 @@ public class Animation5 extends Animation {
         }
         public void display() {
             g2d.setColor(c);
-            t = rect.translate(virtualX, virtualY, virtualWidth, virtualHeight, -virtualX, -virtualY);
-            r = rect.rotate(t.get(0), t.get(1), angle);
+            
+            // effect 0
+//            Point center = rect.getCenterPoint(virtualX, virtualY, virtualWidth, virtualHeight);
+//            t = rect.translate(virtualX, virtualY, virtualWidth, virtualHeight, -center.x, -center.y);
+//            r = rect.rotate(t.get(0), t.get(1), angle);
+//            t = rect.translate(r.get(0), r.get(1), r.get(2), r.get(3), center.x, center.y);
+//            sh = rect.shear(t.get(0), t.get(1), t.get(2), t.get(3), shearX, shearY);
+//            rect.draw(sh.get(0), sh.get(1), sh.get(2), sh.get(3), g2d);
+
+            // effect 1
+//            r = rect.rotate(virtualX, virtualY, virtualWidth, virtualHeight, angle);
+//            sh = rect.shear(r.get(0), r.get(1), r.get(2), r.get(3), shearX, shearY);
+//            rect.draw(sh.get(0), sh.get(1), sh.get(2), sh.get(3), g2d);
+
+            // effect 2
+//            t = rect.translate(virtualX, virtualY, virtualWidth, virtualHeight, -virtualX, -virtualY);
+//            r = rect.rotate(t.get(0), t.get(1), angle);
 //            sh = rect.shear(r.get(0), r.get(1), r.get(2), r.get(3), shearX, shearY);
 //            t = rect.translate(sh.get(0), sh.get(1), sh.get(2), sh.get(3), virtualX, virtualY);
 //            rect.draw(t.get(0), t.get(1), t.get(2), t.get(3), g2d);
+            
+            // effect 3
+            t = rect.translate(virtualX, virtualY, virtualWidth, virtualHeight, -virtualX, -virtualY);
+            r = rect.rotate(t.get(0), t.get(1), angle);
             t = rect.translate(r.get(0), r.get(1), r.get(2), r.get(3), virtualX, virtualY);
             sh = rect.shear(t.get(0), t.get(1), t.get(2), t.get(3), shearX, shearY);
             rect.draw(sh.get(0), sh.get(1), sh.get(2), sh.get(3), g2d);
+            
+            
             update();
         }
     }

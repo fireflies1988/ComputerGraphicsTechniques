@@ -217,6 +217,12 @@ public class Rectangle extends Shape {
         return new Point(Math.round((virtualTL.x + virtualBR.x) / 2.0f), Math.round((virtualTL.y + virtualBR.y) / 2.0f));
     }
     
+    public Point getCenterPoint(int virtualX, int virtualY, int virtualWidth, int virtualHeight) {
+        Point virtualTL = new Point(virtualX, virtualY);
+        Point virtualBR = new Point(virtualX + virtualWidth, virtualY - virtualHeight);
+        return getCenterPoint(virtualTL, virtualBR);
+    }
+    
     
     
     
