@@ -66,37 +66,82 @@ public class Animation2 extends Animation {
         g2d.setColor(Color.GREEN);
         float sin = (float) (Math.sin(Math.toRadians(angle)));
         for (float i = 0; i < 360; i += 10) {
-//            if (angle < 360) {
-//                rl = line.rotate(Math.round(pt1.x * sin), 0, pt2.x, 0, i);
-//                System.out.println(rl);
-//                line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
-//            } else if (angle < 360 * 2) {
-//                rl = line.rotate(Math.round(pt1.x * sin), 0, 45, pt2.y, i);
-//                System.out.println(rl);
-//                line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
-//            } else if (angle < 360 * 3) {
-//                rl = line.rotate(Math.round(pt1.x * sin), 0, pt2.x, pt2.y, i);
-//                System.out.println(rl);
-//                line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
-//            }
-//            else 
+//            line.draw(pt1.x, pt1.y, pt2.x, pt2.y, g2d);
+
+
+
+    
+//            rl = line.rotate(pt1.x, pt1.y, pt2.x, pt2.y, i);
+//            System.out.println(rl);
+//            line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
+            
+
+
+
+
+//            rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i);
+//            System.out.println(rl);
+//            line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
+
+
+
+            
+
+//            rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i);
+//            System.out.println(rl);
+//            line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
+//            
+//            rc1 = circle.rotate(Math.round(pt1.x * sin), pt1.y, i);
+//            circle.draw(rc1, 1, g2d);
+//
+//            rc2 = circle.rotate(pt2.x, pt2.y, i);
+//            circle.draw(rc2, 2, g2d);
+
+
+
+
+
+//            rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i * sin);
+//            System.out.println(rl);
+//            line.draw(rl.get(0).x, rl.get(0).y, rl.get(1).x, rl.get(1).y, g2d);
+//            
+//            rc1 = circle.rotate(Math.round(pt1.x * sin), pt1.y, i * sin);
+//            circle.draw(rc1, 1, g2d);
+//
+//            rc2 = circle.rotate(pt2.x, pt2.y, i * sin);
+//            circle.draw(rc2, 2, g2d);
+
+
+
+            
+//            rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i * sin);
+//            rl = line.rotate(rl.get(0), rl.get(1), angle);
+//            line.draw(rl.get(0), rl.get(1), g2d);
+//
+//            rc1 = circle.rotate(Math.round(pt1.x * sin), pt1.y, i * sin);
+//            rc1 = circle.rotate(rc1, angle);
+//            circle.draw(rc1, 1, g2d);
+//
+//            rc2 = circle.rotate(pt2.x, pt2.y, i * sin);
+//            rc2 = circle.rotate(rc2, angle);
+//            circle.draw(rc2, 2, g2d);
+
+
+
+
+
+            // final result
             if (angle < 360 * 2) {
                 rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i * sin);
                 rl = line.rotate(rl.get(0), rl.get(1), angle);
-//                tl = line.translate(rl.get(0), rl.get(1), 0, Math.round(20 * sin));
-//                tl = line.translate(rl.get(0), rl.get(1), Math.round(20 * sin), 0);
                 line.draw(rl.get(0), rl.get(1), g2d);
 
                 rc1 = circle.rotate(Math.round(pt1.x * sin), pt1.y, i * sin);
                 rc1 = circle.rotate(rc1, angle);
-//                tc = circle.translate(rc1, 0, Math.round(20 * sin));
-//                tc = circle.translate(rc1, Math.round(20 * sin), 0);
                 circle.draw(rc1, 1, g2d);
 
                 rc2 = circle.rotate(pt2.x, pt2.y, i * sin);
                 rc2 = circle.rotate(rc2, angle);
-//                tc = circle.translate(rc2, 0, Math.round(20 * sin));
-//                tc = circle.translate(rc2, Math.round(20 * sin), 0);
                 circle.draw(rc2, 2, g2d);
             } else if (angle < 360 * 4) {
                 rl = line.rotate(Math.round(pt1.x * sin), pt1.y, pt2.x, pt2.y, i);

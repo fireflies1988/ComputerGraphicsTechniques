@@ -16,8 +16,6 @@ import shapes2d.UpperDashedEllipse;
  * @author COMPUTER
  */
 public class Sphere {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
-    
     public void draw(int virtualX, int virtualY, int virtualZ, int virtualR, Graphics2D g3d) {
         // convert 3D cooridnate to 2D coordinate using cabinet projection
         Point virtualPt = MainFrame.cabinet(virtualX, virtualY, virtualZ);

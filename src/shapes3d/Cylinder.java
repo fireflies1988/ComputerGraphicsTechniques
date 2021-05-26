@@ -16,9 +16,7 @@ import shapes2d.UpperDashedEllipse;
  *
  * @author COMPUTER
  */
-public class Cylinder {
-    private int offset = MainFrame.PIXEL_SIZE / 2;
-    
+public class Cylinder {    
     // note (virtualX, virtualY, virtualZ) is center point of bottom ellipse
     public void draw(int virtualX, int virtualY, int virtualZ, int virtualR, int virtualHeight, Graphics2D g3d) {
         // convert 3D cooridnate to 2D coordinate using cabinet projection
