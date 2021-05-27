@@ -156,7 +156,6 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3D = new javax.swing.JPanel() {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                draw3DCoordinateSystem(g3d);
                 g.drawImage(offImage2, 0, 0, null);
             }
         };
@@ -192,6 +191,9 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jButtonDraw3D = new javax.swing.JButton();
         jButtonClear3D = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jCheckBoxGridMode3D = new javax.swing.JCheckBox();
+        jCheckBox3DCoordSystem = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Just A Dumb Application");
@@ -811,16 +813,38 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setText("Mode");
+
+        jCheckBoxGridMode3D.setText("Pixel grid");
+        jCheckBoxGridMode3D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxGridMode3DActionPerformed(evt);
+            }
+        });
+
+        jCheckBox3DCoordSystem.setText("Coordinate axes");
+        jCheckBox3DCoordSystem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3DCoordSystemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBoxShape3D, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelCard3D, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxShape3D, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelCard3D, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jCheckBoxGridMode3D, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jCheckBox3DCoordSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel32)
@@ -828,7 +852,8 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addComponent(jButtonDraw3D, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonClear3D, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButtonClear3D, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel21))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -847,7 +872,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDraw3D)
                     .addComponent(jButtonClear3D))
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxGridMode3D)
+                    .addComponent(jCheckBox3DCoordSystem))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1017,6 +1048,9 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jCheckBoxGridMode.isSelected()) {
             drawPixelGrid(g2d);
+            if (jCheckBoxCoordSystem.isSelected()) {
+                drawCoordinateSystem(g2d);
+            }
         } else {
             g2d.setBackground(new Color(255, 255, 255, 0));
             g2d.clearRect(0, 0, maxX1, maxY1);
@@ -1180,6 +1214,12 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         g3d.setBackground(new Color(255, 255, 255, 0));
         g3d.clearRect(0, 0, maxX2, maxY2);
+        if (jCheckBoxGridMode3D.isSelected()) {
+            drawPixelGrid(g3d);
+        }
+        if (jCheckBox3DCoordSystem.isSelected()) {
+            draw3DCoordinateSystem(g3d);
+        }
         jPanel3D.repaint();
     }//GEN-LAST:event_jButtonClear3DActionPerformed
 
@@ -1255,6 +1295,36 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButtonAnimation5ActionPerformed
 
+    private void jCheckBoxGridMode3DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxGridMode3DActionPerformed
+        if (jCheckBoxGridMode3D.isSelected()) {
+            drawPixelGrid(g3d);
+            if (jCheckBox3DCoordSystem.isSelected()) {
+                draw3DCoordinateSystem(g3d);
+            }
+        } else {
+            g3d.setBackground(new Color(255, 255, 255, 0));
+            g3d.clearRect(0, 0, maxX1, maxY1);
+            if (jCheckBox3DCoordSystem.isSelected()) {
+                draw3DCoordinateSystem(g3d);
+            }
+        }
+        jPanel3D.repaint();
+    }//GEN-LAST:event_jCheckBoxGridMode3DActionPerformed
+
+    private void jCheckBox3DCoordSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3DCoordSystemActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBox3DCoordSystem.isSelected()) {
+            draw3DCoordinateSystem(g3d);
+        } else {
+            g3d.setBackground(new Color(255, 255, 255, 0));
+            g3d.clearRect(0, 0, maxX1, maxY1);
+            if (jCheckBoxGridMode3D.isSelected()) {
+                drawPixelGrid(g3d);
+            }
+        }
+        jPanel3D.repaint();
+    }//GEN-LAST:event_jCheckBox3DCoordSystemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1295,8 +1365,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClear3D;
     private javax.swing.JButton jButtonDraw;
     private javax.swing.JButton jButtonDraw3D;
+    private javax.swing.JCheckBox jCheckBox3DCoordSystem;
     private javax.swing.JCheckBox jCheckBoxCoordSystem;
     private javax.swing.JCheckBox jCheckBoxGridMode;
+    private javax.swing.JCheckBox jCheckBoxGridMode3D;
     private javax.swing.JComboBox<String> jComboBoxShape;
     private javax.swing.JComboBox<String> jComboBoxShape3D;
     private javax.swing.JLabel jLabel1;
@@ -1311,6 +1383,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;

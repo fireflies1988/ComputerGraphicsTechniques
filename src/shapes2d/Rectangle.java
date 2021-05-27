@@ -225,19 +225,23 @@ public class Rectangle extends Shape {
     
     
     
-    
+    // access https://www.tutorialspoint.com/computer_graphics/2d_transformation.htm for more information
     public ArrayList<Point> shear(Point virtualTL, Point virtualTR, Point virtualBL, Point virtualBR, float shearX, float shearY) {
         Point tl = new Point(virtualTL);
         Point tr = new Point(virtualTR);
         Point bl = new Point(virtualBL);
         Point br = new Point(virtualBR);
         
+        int temp = tl.x;
         tl.x += Math.round(shearX * tl.y);
         tl.y += Math.round(shearY * tl.x);
+        temp = tr.x;
         tr.x += Math.round(shearX * tr.y);
         tr.y += Math.round(shearY * tr.x);
+        temp = bl.x;
         bl.x += Math.round(shearX * bl.y);
         bl.y += Math.round(shearY * bl.x);
+        temp = br.x;
         br.x += Math.round(shearX * br.y);
         br.y += Math.round(shearY * br.x);
         
