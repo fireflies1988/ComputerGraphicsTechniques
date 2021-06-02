@@ -1154,6 +1154,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation1ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation1.isSelected()) {
+            jCheckBoxGridMode.setSelected(false);
+            jCheckBoxCoordSystem.setSelected(false);
             try {
                 animation1 = new Animation1(jPanel2D, g2d);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -1226,6 +1228,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation2ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation2.isSelected()) {
+            jCheckBoxGridMode.setSelected(false);
+            jCheckBoxCoordSystem.setSelected(false);
             try {
                 animation2 = new Animation2(jPanel2D, g2d);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -1244,6 +1248,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation3ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation3.isSelected()) {
+            jCheckBoxGridMode.setSelected(false);
+            jCheckBoxCoordSystem.setSelected(false);
             try {
                 animation3 = new Animation3(jPanel2D, g2d);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -1262,6 +1268,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation4ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation4.isSelected()) {
+            jCheckBoxGridMode.setSelected(false);
+            jCheckBoxCoordSystem.setSelected(false);
             try {
                 animation4 = new Animation4(jPanel2D, g2d);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -1280,6 +1288,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void jToggleButtonAnimation5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAnimation5ActionPerformed
         // TODO add your handling code here:
         if (jToggleButtonAnimation5.isSelected()) {
+            jCheckBoxGridMode.setSelected(false);
+            jCheckBoxCoordSystem.setSelected(false);
             try {
                 animation5 = new Animation5(jPanel2D, g2d);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {

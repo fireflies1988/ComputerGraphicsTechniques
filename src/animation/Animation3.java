@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import javax.sound.sampled.AudioInputStream;
@@ -42,8 +41,8 @@ public class Animation3 extends Animation {
             d[i] = new Drop();
         }
         
-        File file = new File("src/audio/Pachelbel Canon In D With Rain Sounds.wav");
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+//        File file = new File("src/audio/Pachelbel Canon In D With Rain Sounds.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getResource("/audio/Pachelbel Canon In D With Rain Sounds.wav"));
         clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();

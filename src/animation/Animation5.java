@@ -13,7 +13,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -42,8 +41,8 @@ public class Animation5 extends Animation {
         }
 //        MainFrame.PIXEL_SIZE = 3;
         
-        File file = new File("src/audio/Amadeus - Future world.wav");
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+//        File file = new File("src/audio/Amadeus - Future world.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getResource("/audio/Amadeus - Future world.wav"));
         clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();

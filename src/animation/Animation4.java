@@ -5,14 +5,12 @@
  */
 package animation;
 
-import computergraphicstechniques.MainFrame;
 import static computergraphicstechniques.MainFrame.maxX1;
 import static computergraphicstechniques.MainFrame.maxY1;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -40,8 +38,8 @@ public class Animation4 extends Animation {
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, maxX1, maxY1);
         
-        File file = new File("src/audio/Foundation - Vibe Tracks.wav");
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+//        File file = new File("src/audio/Foundation - Vibe Tracks.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getResource("/audio/Foundation - Vibe Tracks.wav"));
         clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();
@@ -65,7 +63,7 @@ public class Animation4 extends Animation {
         int x = Math.round(r * (float) Math.cos(radian));
         int y = Math.round(r * (float) Math.sin(radian));
         point.draw(x, y, g2d);
-        radian += 0.02f;
+        radian += 0.01f;
         System.out.println(radian);
         if (radian > Math.PI * 2 * d) {
             radian = 0;

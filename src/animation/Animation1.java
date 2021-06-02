@@ -10,10 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -40,8 +38,8 @@ public class Animation1 extends Animation {
         super(jPanel, g2d);
         MainFrame.PIXEL_SIZE = 3;
         
-        File file = new File("src/audio/Universal - Vibe Tracks.wav");
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+//        File file = new File("src/audio/Universal - Vibe Tracks.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getResource("/audio/Universal - Vibe Tracks.wav"));
         clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();
